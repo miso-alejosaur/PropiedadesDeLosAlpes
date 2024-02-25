@@ -5,6 +5,7 @@ from pda.seedwork.dominio.reglas import IdEntidadEsInmutable
 
 @dataclass
 class Entidad:
+    id: uuid.UUID = field(hash=True)
     _id: uuid.UUID = field(init=False, repr=False, hash=True)
 
     @classmethod
@@ -16,7 +17,7 @@ class Entidad:
         return self._id
 
     @id.setter
-    def id(self) -> None:
+    def id(self, id: uuid.UUID) -> None:
         if not IdEntidadEsInmutable(self).es_valido():
             raise Exception('El identificador de la entidad debe ser Inmutable')
         self._id = self.siguiente_id()

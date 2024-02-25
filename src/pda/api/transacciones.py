@@ -17,6 +17,7 @@ def crear_transaccion():
 
         return "done"
     except Exception as e:
+        raise e
         return Response(json.dumps(dict(error=str(e))), status=400, mimetype='application/json')
 
 '''

@@ -13,13 +13,13 @@ class MapeadorTransaccion(Mapeador):
         transaccion_dto.id = str(entidad.id)
         transaccion_dto.valor = entidad.valor.monto
         transaccion_dto.fecha = datetime(entidad.fecha.fecha.year, entidad.fecha.fecha.month, entidad.fecha.fecha.day, entidad.fecha.hora.hour, entidad.fecha.hora.minute)
-        transaccion_dto.divisa_id = entidad.divisa.id
+        transaccion_dto.divisa_id = entidad.divisa.codigo
 
         return transaccion_dto
 
     def dto_a_entidad(self, dto: TransaccionDTO) -> Transaccion:
         transaccion = Transaccion(dto.id)
-        transaccion.divisa = Divisa(dto.divisa.nombre, dto.divisa.pais)
+        transaccion.divisa = Divisa(dto.divisa.codigo, dto.divisa.nombre, dto.divisa.pais)
         transaccion.fecha = Fecha(dto.fecha.date, dto.fecha.time)
         transaccion.valor = Valor(dto.valor)
 

@@ -2,8 +2,10 @@ from dataclasses import dataclass, field
 from datetime import date, time
 import uuid
 
+from pda.seedwork.dominio.objetos_valor import ObjetoValor
+
 @dataclass(frozen=True)
-class Valor():
+class Valor(ObjetoValor):
     monto: float
 
 @dataclass(frozen=True)
@@ -13,6 +15,6 @@ class Fecha():
 
 @dataclass(frozen=True)
 class Divisa():
-    id: uuid.UUID = field(init=False, repr=False, hash=True)
+    codigo: str
     nombre: str
     pais: str

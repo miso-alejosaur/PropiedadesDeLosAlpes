@@ -5,6 +5,7 @@ from src.pda.modulos.contratos.dominio.fabricas import FabricaContratos
 from src.pda.modulos.contratos.dominio.repositorios import RepositorioContratos
 from src.pda.modulos.contratos.infraestructura.dto import Contrato as ContratoDTO
 from src.pda.modulos.contratos.infraestructura.mapeadores import MapeadorContrato
+from src.pda.seedwork.dominio.excepciones import ExcepcionNoEncontrado
 
 class RepositorioContratosPostgreSQL(RepositorioContratos):
     def __init__(self):
@@ -12,7 +13,9 @@ class RepositorioContratosPostgreSQL(RepositorioContratos):
 
     def obtener_por_id(self, id: UUID) -> Contrato:
         session = Session()
-        contrato_dto = session.query(ContratoDTO).filter(ContratoDTO.id==str(id)).one()
+        contrato_dto = session.query(ContratoDTO).filter(ContratoDTO.id==str(id)).one_or_none()
+        if not contrato_dto:
+            raise ExcepcionNoEncontrado()
         return self.fabrica_contratos.crear_objeto(contrato_dto, MapeadorContrato())
 
     def obtener_todos(self) -> list[Contrato]:

@@ -16,7 +16,7 @@ class MapeadorContrato(RepMap):
 
         return ContratoDTO(entidad.valor.monto,
                            entidad.fechas.fecha_inicio.strftime(self._FORMATO_FECHA),
-                           entidad.fechas.fecha_vencimiento.strftime(self._FORMATO_FECHA),
+                           entidad.fechas.fecha_vencimiento.strftime(self._FORMATO_FECHA) if entidad.fechas.fecha_vencimiento else '',
                            entidad.tipo_contrato.tipo_contrato,
                            entidad.pais.nombre,
                            entidad.divisa.codigo,

@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  app_db:
+  database:
     image: postgres:15-bullseye
     environment:
       POSTGRES_DB: postgres
@@ -15,7 +15,7 @@ services:
     deploy:  
       resources:
         limits:
-          cpus: '0.2'
+          cpus: '0.5'
           memory: 300M
 
   app:
@@ -31,11 +31,21 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.2'
+          cpus: '0.5'
           memory: 300M
     depends_on:
-      app_db:
+      database:
         condition: service_started
+
+  broker:
+    image: redis:7.2-bookworm
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 150M
+    networks:
+      - app_net
 
 networks:
   app_net:

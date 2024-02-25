@@ -1,7 +1,7 @@
 from uuid import UUID
 from pda.modulos.transacciones.dominio.entidades import Transaccion
+from pda.modulos.transacciones.dominio.fabricas import FabricaTransacciones
 from pda.modulos.transacciones.dominio.repositorios import RepositorioTransacciones
-
 
 class RepositorioTransaccionesSQLite(RepositorioTransacciones):
     def __init__(self):

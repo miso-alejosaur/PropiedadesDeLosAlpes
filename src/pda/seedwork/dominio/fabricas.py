@@ -1,4 +1,7 @@
 from abc import ABC, abstractmethod
+
+from pda.seedwork.dominio.mixins import ValidarReglasMixin
+
 from .repositorios import Mapeador
 
 class Fabrica(ABC, ValidarReglasMixin):

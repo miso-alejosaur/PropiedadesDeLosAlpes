@@ -1,9 +1,9 @@
 from attr import dataclass
-from pda.modulos.transacciones.dominio.entidades import Transaccion
-from pda.modulos.transacciones.dominio.reglas import ValorNoNegativo
-from pda.seedwork.dominio.entidades import Entidad
-from pda.seedwork.dominio.fabricas import Fabrica
-from pda.seedwork.dominio.repositorios import Mapeador
+from src.pda.modulos.transacciones.dominio.entidades import Transaccion
+from src.pda.modulos.transacciones.dominio.reglas import ValorNoNegativo
+from src.pda.seedwork.dominio.entidades import Entidad
+from src.pda.seedwork.dominio.fabricas import Fabrica
+from src.pda.seedwork.dominio.repositorios import Mapeador
 
 
 @dataclass

@@ -1,8 +1,8 @@
 from datetime import datetime
-from pda.modulos.contratos.dominio.entidades import Contrato
-from pda.modulos.contratos.dominio.objetos_valor import Divisa, Fechas, Valor, TipoContrato, Pais
-from pda.modulos.contratos.infraestructura.dto import Contrato as ContratoDTO
-from pda.seedwork.dominio.repositorios import Mapeador
+from src.pda.modulos.contratos.dominio.entidades import Contrato
+from src.pda.modulos.contratos.dominio.objetos_valor import Divisa, Fechas, Valor, TipoContrato, Pais
+from src.pda.modulos.contratos.infraestructura.dto import Contrato as ContratoDTO
+from src.pda.seedwork.dominio.repositorios import Mapeador
 
 class MapeadorContrato(Mapeador):
     def obtener_tipo(self) -> type:

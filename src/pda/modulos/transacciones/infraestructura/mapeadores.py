@@ -1,8 +1,8 @@
 from datetime import datetime
-from pda.modulos.transacciones.dominio.entidades import Transaccion
-from pda.modulos.transacciones.dominio.objetos_valor import Divisa, Fecha, Valor
-from pda.modulos.transacciones.infraestructura.dto import Transaccion as TransaccionDTO
-from pda.seedwork.dominio.repositorios import Mapeador
+from src.pda.modulos.transacciones.dominio.entidades import Transaccion
+from src.pda.modulos.transacciones.dominio.objetos_valor import Divisa, Fecha, Valor
+from src.pda.modulos.transacciones.infraestructura.dto import Transaccion as TransaccionDTO
+from src.pda.seedwork.dominio.repositorios import Mapeador
 
 class MapeadorTransaccion(Mapeador):
     def obtener_tipo(self) -> type:

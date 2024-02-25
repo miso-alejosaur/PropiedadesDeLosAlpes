@@ -1,13 +1,13 @@
 
 from datetime import date, time
-from pda.modulos.transacciones.aplicacion.dto import TransaccionDTO
-from pda.modulos.transacciones.aplicacion.mapeadores import MapeadorTransaccion
-from pda.modulos.transacciones.dominio.entidades import Transaccion
-from pda.modulos.transacciones.dominio.fabricas import FabricaTransacciones
-from pda.modulos.transacciones.dominio.objetos_valor import Divisa, Fecha, Valor
-from pda.modulos.transacciones.dominio.repositorios import RepositorioTransacciones
-from pda.modulos.transacciones.infraestructura.fabricas import FabricaRepositorio
-from pda.seedwork.aplicacion.servicios import Servicio
+from src.pda.modulos.transacciones.aplicacion.dto import TransaccionDTO
+from src.pda.modulos.transacciones.aplicacion.mapeadores import MapeadorTransaccion
+from src.pda.modulos.transacciones.dominio.entidades import Transaccion
+from src.pda.modulos.transacciones.dominio.fabricas import FabricaTransacciones
+from src.pda.modulos.transacciones.dominio.objetos_valor import Divisa, Fecha, Valor
+from src.pda.modulos.transacciones.dominio.repositorios import RepositorioTransacciones
+from src.pda.modulos.transacciones.infraestructura.fabricas import FabricaRepositorio
+from src.pda.seedwork.aplicacion.servicios import Servicio
 
 
 class ServicioTransaccion(Servicio):

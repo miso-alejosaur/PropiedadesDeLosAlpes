@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from datetime import date, time
 
-from pda.seedwork.dominio.objetos_valor import ObjetoValor
+from src.pda.seedwork.dominio.objetos_valor import ObjetoValor
 
 @dataclass(frozen=True)
 class Valor(ObjetoValor):

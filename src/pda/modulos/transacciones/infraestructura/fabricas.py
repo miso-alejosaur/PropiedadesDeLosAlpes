@@ -1,8 +1,8 @@
 from dataclasses import dataclass
-from pda.modulos.transacciones.dominio.repositorios import RepositorioTransacciones
-from pda.modulos.transacciones.infraestructura.repositorios import RepositorioTransaccionesSQLite
+from src.pda.modulos.transacciones.dominio.repositorios import RepositorioTransacciones
+from src.pda.modulos.transacciones.infraestructura.repositorios import RepositorioTransaccionesSQLite
 
-from pda.seedwork.dominio.repositorios import Repositorio
+from src.pda.seedwork.dominio.repositorios import Repositorio
 
 
 @dataclass

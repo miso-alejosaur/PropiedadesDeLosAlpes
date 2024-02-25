@@ -6,7 +6,7 @@ from flask import Flask
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 def importar_modelos_alchemy():
-    import pda.modulos.transacciones.infraestructura.dto
+    import src.pda.modulos.transacciones.infraestructura.dto
 
 def create_app():
     app = Flask(__name__, instance_relative_config=True)
@@ -15,10 +15,10 @@ def create_app():
             'sqlite:///' + os.path.join(basedir, 'database.db')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    from pda.config.db import init_db
+    from src.pda.config.db import init_db
     init_db(app)
 
-    from pda.config.db import db
+    from src.pda.config.db import db
     
     importar_modelos_alchemy()
     with app.app_context(): 

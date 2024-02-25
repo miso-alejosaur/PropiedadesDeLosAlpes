@@ -4,8 +4,8 @@
 
 from __future__ import annotations
 from dataclasses import dataclass, field
-import pda.modulos.transacciones.dominio.objetos_valor as ov
-from pda.seedwork.dominio.entidades import AgregacionRaiz
+import src.pda.modulos.transacciones.dominio.objetos_valor as ov
+from src.pda.seedwork.dominio.entidades import AgregacionRaiz
 
 @dataclass
 class Transaccion(AgregacionRaiz):

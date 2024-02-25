@@ -17,3 +17,7 @@ class Divisa():
     codigo: str
     nombre: str
     pais: str
+
+@dataclass(frozen=True)
+class Contrato():
+    id_contrato: str

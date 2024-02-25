@@ -17,3 +17,4 @@ class Transaccion(Base):
     valor = Column(Float, nullable=False)
     fecha = Column(DateTime, nullable=False)
     divisa_id = Column(String, ForeignKey("divisa.id"))
+    id_contrato = Column(String, nullable=False)

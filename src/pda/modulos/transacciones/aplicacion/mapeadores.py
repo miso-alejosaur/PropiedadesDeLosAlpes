@@ -1,7 +1,7 @@
 from datetime import date, time, datetime
 from src.pda.modulos.transacciones.aplicacion.dto import TransaccionDTO
 from src.pda.modulos.transacciones.dominio.entidades import Transaccion
-from src.pda.modulos.transacciones.dominio.objetos_valor import Divisa, Fecha, Valor
+from src.pda.modulos.transacciones.dominio.objetos_valor import Divisa, Fecha, Valor,Contrato
 from src.pda.seedwork.dominio.repositorios import Mapeador as RepMap
 from src.pda.seedwork.aplicacion.dto import Mapeador as AppMap
 
@@ -15,7 +15,7 @@ class MapeadorTransaccion(RepMap):
     def entidad_a_dto(self, entidad: Transaccion) -> TransaccionDTO:
 
         combined_datetime = datetime.combine(entidad.fecha.fecha, entidad.fecha.hora)
-        return TransaccionDTO(entidad.valor.monto, combined_datetime.strftime(self._FORMATO_FECHA), entidad.divisa.codigo)
+        return TransaccionDTO(entidad.valor.monto, combined_datetime.strftime(self._FORMATO_FECHA), entidad.divisa.codigo, entidad.contrato)
 
     def dto_a_entidad(self, dto: TransaccionDTO) -> Transaccion:
 
@@ -24,13 +24,14 @@ class MapeadorTransaccion(RepMap):
         transaccion = Transaccion(valor=Valor(dto.valor), 
                                   fecha=Fecha(fecha=fecha_string.date(),
                                               hora=fecha_string.time()),
-                                  divisa=Divisa("COP", "peso", "col"))
+                                  divisa=Divisa("COP", "peso", "col"),
+                                  contrato=Contrato(id_contrato=dto.contrato))
 
         return transaccion
 
 class MapTransaccionDTOJson(AppMap):
     def externo_a_dto(self, externo: dict) -> TransaccionDTO:
-        transaccion_dto = TransaccionDTO(externo["valor"], externo["fecha"], externo["divisa"])
+        transaccion_dto = TransaccionDTO(externo["valor"], externo["fecha"], externo["divisa"], externo["id_contrato"])
 
         return transaccion_dto
 

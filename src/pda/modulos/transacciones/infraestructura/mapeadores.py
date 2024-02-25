@@ -1,6 +1,6 @@
 from datetime import datetime
 from src.pda.modulos.transacciones.dominio.entidades import Transaccion
-from src.pda.modulos.transacciones.dominio.objetos_valor import Divisa, Fecha, Valor
+from src.pda.modulos.transacciones.dominio.objetos_valor import Divisa, Fecha, Valor, Contrato
 from src.pda.modulos.transacciones.infraestructura.dto import Transaccion as TransaccionDTO
 from src.pda.seedwork.dominio.repositorios import Mapeador
 
@@ -16,6 +16,7 @@ class MapeadorTransaccion(Mapeador):
         print(entidad.fecha.fecha)
         transaccion_dto.fecha = datetime(entidad.fecha.fecha.year, entidad.fecha.fecha.month, entidad.fecha.fecha.day, entidad.fecha.hora.hour, entidad.fecha.hora.minute)
         transaccion_dto.divisa_id = entidad.divisa.codigo
+        transaccion_dto.id_contrato = entidad.contrato.id_contrato
 
         return transaccion_dto
 
@@ -24,5 +25,6 @@ class MapeadorTransaccion(Mapeador):
         transaccion.divisa = Divisa(dto.divisa.codigo, dto.divisa.nombre, dto.divisa.pais)
         transaccion.fecha = Fecha(dto.fecha.date, dto.fecha.time)
         transaccion.valor = Valor(dto.valor)
+        transaccion.contrato = Contrato(dto.id_contrato)
 
         return transaccion

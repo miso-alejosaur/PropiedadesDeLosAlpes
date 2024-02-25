@@ -14,8 +14,8 @@ class FabricaContratos(Fabrica):
         else:
             contrato: Contrato = mapeador.dto_a_entidad(obj)
 
-            self.validar_regla(ValorNoNegativo(contrato))
-            self.validar_regla(VencimientoValido(contrato))
-            self.validar_regla(FechasValidas(contrato))
+            self.validar_regla(ValorNoNegativo(contrato.valor))
+            self.validar_regla(VencimientoValido(contrato.fechas, contrato.tipo_contrato))
+            self.validar_regla(FechasValidas(contrato.fechas))
 
             return contrato

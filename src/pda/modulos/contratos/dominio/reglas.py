@@ -10,7 +10,7 @@ class ValorNoNegativo(ReglaNegocio):
         self.valor = valor
 
     def es_valido(self) -> bool:
-        return self.valor.monto != self.valor.monto
+        return self.valor.monto > 0
     
 class VencimientoValido(ReglaNegocio):
 

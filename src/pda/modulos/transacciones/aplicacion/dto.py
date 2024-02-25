@@ -1,11 +1,11 @@
 
-from dataclasses import field
+from dataclasses import dataclass, field
 
-from attr import dataclass
+from pda.seedwork.aplicacion.dto import DTO
 
 
 @dataclass(frozen=True)
 class TransaccionDTO(DTO):
-    valor = str = field(default_factory=str)
-    fecha = db.Column(db.DateTime, nullable=False)
-    divisa_id = db.Column(db.String, db.ForeignKey("divisa.id"))
+    valor: str = field(default_factory=str)
+    fecha: str = field(default_factory=str)
+    divisa_id: str = field(default_factory=str)

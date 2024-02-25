@@ -1,6 +1,5 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import date, time
-import uuid
 
 from pda.seedwork.dominio.objetos_valor import ObjetoValor
 

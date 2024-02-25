@@ -1,5 +1,6 @@
-from dataclasses import dataclass
-from datetime import date, time, timezone
+from dataclasses import dataclass, field
+from datetime import date, time
+import uuid
 
 @dataclass(frozen=True)
 class Valor():
@@ -9,9 +10,9 @@ class Valor():
 class Fecha():
     fecha: date
     hora: time
-    zona_horaria: timezone
 
 @dataclass(frozen=True)
 class Divisa():
+    id: uuid.UUID = field(init=False, repr=False, hash=True)
     nombre: str
     pais: str

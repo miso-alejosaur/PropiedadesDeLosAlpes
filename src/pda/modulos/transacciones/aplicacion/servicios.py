@@ -1,4 +1,5 @@
 
+from pda.modulos.transacciones.dominio.fabricas import FabricaTransacciones
 from pda.modulos.transacciones.infraestructura.fabricas import FabricaRepositorio
 from pda.seedwork.aplicacion.servicios import Servicio
 

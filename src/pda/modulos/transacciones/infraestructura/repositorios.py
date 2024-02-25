@@ -1,7 +1,10 @@
 from uuid import UUID
+from pda.config.db import db
 from pda.modulos.transacciones.dominio.entidades import Transaccion
 from pda.modulos.transacciones.dominio.fabricas import FabricaTransacciones
 from pda.modulos.transacciones.dominio.repositorios import RepositorioTransacciones
+from pda.modulos.transacciones.infraestructura.dto import Transaccion as TransaccionDTO
+from pda.modulos.transacciones.infraestructura.mapeadores import MapeadorTransaccion
 
 class RepositorioTransaccionesSQLite(RepositorioTransacciones):
     def __init__(self):
@@ -15,13 +18,13 @@ class RepositorioTransaccionesSQLite(RepositorioTransacciones):
         # TODO
         raise NotImplementedError
 
-    def agregar(self, transaccion: Transaccion):
-        transaccion_dto = self.fabrica_transacciones.crear_objeto(transaccion, MapeadorTransaccion())
+    def agregar(self, entity: Transaccion):
+        transaccion_dto = self.fabrica_transacciones.crear_objeto(entity, MapeadorTransaccion())
         db.session.add(transaccion_dto)
         db.session.commit()
 
-    def actualizar(self, transaccion: Transaccion):
+    def actualizar(self, entity: Transaccion):
         ...
 
-    def eliminar(self, transaccion_id: UUID):
+    def eliminar(self, entity_id: UUID):
         ...

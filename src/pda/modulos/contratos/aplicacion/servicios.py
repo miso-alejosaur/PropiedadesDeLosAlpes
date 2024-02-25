@@ -1,34 +1,29 @@
 
 from datetime import date, time
 import uuid
-from pda.modulos.transacciones.dominio.entidades import Transaccion
-from pda.modulos.transacciones.dominio.fabricas import FabricaTransacciones
-from pda.modulos.transacciones.dominio.objetos_valor import Divisa, Fecha, Valor
-from pda.modulos.transacciones.dominio.repositorios import RepositorioTransacciones
-from pda.modulos.transacciones.infraestructura.fabricas import FabricaRepositorio
+from pda.modulos.contratos.dominio.entidades import Contrato
+from pda.modulos.contratos.dominio.fabricas import FabricaContratos
+from pda.modulos.contratos.dominio.objetos_valor import Divisa, Fechas, Valor
+from pda.modulos.contratos.dominio.repositorios import RepositorioContratos
+from pda.modulos.contratos.infraestructura.fabricas import FabricaRepositorio
 from pda.seedwork.aplicacion.servicios import Servicio
 
 
-class ServicioTransaccion(Servicio):
+class ServicioContrato(Servicio):
     def __init__(self):
         self._fabrica_repositorio: FabricaRepositorio = FabricaRepositorio()
-        self._fabrica_transacciones: FabricaTransacciones = FabricaTransacciones()
+        self._fabrica_contratos: FabricaContratos = FabricaContratos()
 
     @property
     def fabrica_repositorio(self):
         return self._fabrica_repositorio
 
     @property
-    def fabrica_transacciones(self):
-        return self._fabrica_transacciones
+    def fabrica_contratos(self):
+        return self._fabrica_contratos
 
-    def crear_transaccion(self) -> Transaccion:
+    def crear_transaccion(self) -> Contrato:
         
-        repo = self.fabrica_repositorio.crear_objeto(RepositorioTransacciones.__class__)
-        transaccion = Transaccion(valor=Valor(monto=123.2), 
-                                  fecha=Fecha(fecha=date(2020, 12, 12), 
-                                              hora=time(10, 20, 0)), 
-                                  divisa=Divisa("COP", "peso", "col"))
-        repo.agregar(transaccion)
+        repo = self.fabrica_repositorio.crear_objeto(RepositorioContratos.__class__)
 
         return "ok"

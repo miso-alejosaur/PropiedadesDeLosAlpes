@@ -1,29 +1,29 @@
 from uuid import UUID
 from pda.config.db import db
-from pda.modulos.transacciones.dominio.entidades import Transaccion
-from pda.modulos.transacciones.dominio.fabricas import FabricaTransacciones
-from pda.modulos.transacciones.dominio.repositorios import RepositorioTransacciones
-from pda.modulos.transacciones.infraestructura.dto import Transaccion as TransaccionDTO
-from pda.modulos.transacciones.infraestructura.mapeadores import MapeadorTransaccion
+from pda.modulos.contratos.dominio.entidades import Contrato
+from pda.modulos.contratos.dominio.fabricas import FabricaContratos
+from pda.modulos.contratos.dominio.repositorios import RepositorioContratos
+from pda.modulos.contratos.infraestructura.dto import Contrato as ContratoDTO
+from pda.modulos.contratos.infraestructura.mapeadores import MapeadorContrato
 
-class RepositorioTransaccionesSQLite(RepositorioTransacciones):
+class RepositorioContratosPostgreSQL(RepositorioContratos):
     def __init__(self):
-        self.fabrica_transacciones: FabricaTransacciones = FabricaTransacciones()
+        self.fabrica_contratos: FabricaContratos = FabricaContratos()
 
-    def obtener_por_id(self, id: UUID) -> Transaccion:
-        transaccion_dto = db.session.query(TransaccionDTO).filter_by(id=str(id)).one()
-        return self.fabrica_transacciones.crear_objeto(transaccion_dto, MapeadorTransaccion())
+    def obtener_por_id(self, id: UUID) -> Contrato:
+        contrato_dto = db.session.query(ContratoDTO).filter_by(id=str(id)).one()
+        return self.fabrica_contratos.crear_objeto(contrato_dto, MapeadorContrato())
 
-    def obtener_todos(self) -> list[Transaccion]:
+    def obtener_todos(self) -> list[Contrato]:
         # TODO
         raise NotImplementedError
 
-    def agregar(self, entity: Transaccion):
-        transaccion_dto = self.fabrica_transacciones.crear_objeto(entity, MapeadorTransaccion())
-        db.session.add(transaccion_dto)
+    def agregar(self, entity: Contrato):
+        contrato_dto = self.fabrica_contratos.crear_objeto(entity, MapeadorContrato())
+        db.session.add(contrato_dto)
         db.session.commit()
 
-    def actualizar(self, entity: Transaccion):
+    def actualizar(self, entity: Contrato):
         ...
 
     def eliminar(self, entity_id: UUID):

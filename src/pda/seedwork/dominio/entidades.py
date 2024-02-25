@@ -8,7 +8,7 @@ class Entidad:
     _id: uuid.UUID = field(init=False, repr=False, hash=True)
 
     @classmethod
-    def siguiente_id(self) -> uuid.UUID:
+    def siguiente_id(cls) -> uuid.UUID:
         return uuid.uuid4()
 
     @property
@@ -20,7 +20,7 @@ class Entidad:
         if not IdEntidadEsInmutable(self).es_valido():
             raise Exception('El identificador de la entidad debe ser Inmutable')
         self._id = self.siguiente_id()
-        
+
 @dataclass
 class AgregacionRaiz(Entidad):
     ...

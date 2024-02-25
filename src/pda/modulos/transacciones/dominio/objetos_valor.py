@@ -4,7 +4,7 @@ from datetime import date, time, timezone
 @dataclass(frozen=True)
 class Valor():
     monto: float
-    
+
 @dataclass(frozen=True)
 class Fecha():
     fecha: date

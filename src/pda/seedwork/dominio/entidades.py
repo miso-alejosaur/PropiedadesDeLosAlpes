@@ -1,6 +1,6 @@
 import uuid
 from dataclasses import dataclass, field
-from pda.seedwork.dominio.reglas import IdEntidadEsInmutable
+from src.pda.seedwork.dominio.reglas import IdEntidadEsInmutable
 
 
 @dataclass

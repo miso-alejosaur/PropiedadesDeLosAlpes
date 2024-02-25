@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from pda.seedwork.dominio.mixins import ValidarReglasMixin
+from src.pda.seedwork.dominio.mixins import ValidarReglasMixin
 
 from .repositorios import Mapeador
 

@@ -1,4 +1,4 @@
 from sqlalchemy.orm import sessionmaker
-from src.database.engine import engine
+from src.pda.config.engine import engine
 
 Session = sessionmaker(bind=engine())

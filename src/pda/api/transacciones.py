@@ -1,10 +1,10 @@
 import json
 from flask import redirect, render_template, request, session, url_for
 from flask import Response
-from pda.modulos.transacciones.aplicacion.mapeadores import MapTransaccionDTOJson
-from pda.modulos.transacciones.aplicacion.servicios import ServicioTransaccion
+from src.pda.modulos.transacciones.aplicacion.mapeadores import MapTransaccionDTOJson
+from src.pda.modulos.transacciones.aplicacion.servicios import ServicioTransaccion
 
-import pda.seedwork.presentacion.api as api
+import src.pda.seedwork.presentacion.api as api
 
 bp = api.crear_blueprint('transacciones', '/transacciones')
 

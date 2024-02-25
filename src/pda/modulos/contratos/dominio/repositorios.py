@@ -1,5 +1,5 @@
 from abc import ABC
-from pda.seedwork.dominio.repositorios import Repositorio
+from src.pda.seedwork.dominio.repositorios import Repositorio
 
 
 class RepositorioContratos(Repositorio, ABC):

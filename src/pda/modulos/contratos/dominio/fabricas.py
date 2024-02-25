@@ -1,9 +1,9 @@
 from attr import dataclass
-from pda.modulos.contratos.dominio.entidades import Contrato
-from pda.modulos.contratos.dominio.reglas import ValorNoNegativo, VencimientoValido, FechasValidas
-from pda.seedwork.dominio.entidades import Entidad
-from pda.seedwork.dominio.fabricas import Fabrica
-from pda.seedwork.dominio.repositorios import Mapeador
+from src.pda.modulos.contratos.dominio.entidades import Contrato
+from src.pda.modulos.contratos.dominio.reglas import ValorNoNegativo, VencimientoValido, FechasValidas
+from src.pda.seedwork.dominio.entidades import Entidad
+from src.pda.seedwork.dominio.fabricas import Fabrica
+from src.pda.seedwork.dominio.repositorios import Mapeador
 
 
 @dataclass

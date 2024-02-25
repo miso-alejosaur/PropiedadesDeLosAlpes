@@ -1,5 +1,5 @@
-from pda.modulos.transacciones.dominio.objetos_valor import Valor
-from pda.seedwork.dominio.reglas import ReglaNegocio
+from src.pda.modulos.transacciones.dominio.objetos_valor import Valor
+from src.pda.seedwork.dominio.reglas import ReglaNegocio
 
 class ValorNoNegativo(ReglaNegocio):
 

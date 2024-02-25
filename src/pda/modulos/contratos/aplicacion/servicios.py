@@ -1,12 +1,11 @@
 
 from datetime import date, time
 import uuid
-from pda.modulos.contratos.dominio.entidades import Contrato
-from pda.modulos.contratos.dominio.fabricas import FabricaContratos
-from pda.modulos.contratos.dominio.objetos_valor import Divisa, Fechas, Valor
-from pda.modulos.contratos.dominio.repositorios import RepositorioContratos
-from pda.modulos.contratos.infraestructura.fabricas import FabricaRepositorio
-from pda.seedwork.aplicacion.servicios import Servicio
+from src.pda.modulos.contratos.dominio.entidades import Contrato
+from src.pda.modulos.contratos.dominio.fabricas import FabricaContratos
+from src.pda.modulos.contratos.dominio.repositorios import RepositorioContratos
+from src.pda.modulos.contratos.infraestructura.fabricas import FabricaRepositorio
+from src.pda.seedwork.aplicacion.servicios import Servicio
 
 
 class ServicioContrato(Servicio):

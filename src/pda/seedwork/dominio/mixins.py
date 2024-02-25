@@ -1,4 +1,4 @@
-from pda.seedwork.dominio.reglas import ReglaNegocio
+from src.pda.seedwork.dominio.reglas import ReglaNegocio
 
 class ValidarReglasMixin:
     def validar_regla(self, regla: ReglaNegocio):

@@ -1,10 +1,10 @@
 from uuid import UUID
-from pda.config.db import db
-from pda.modulos.transacciones.dominio.entidades import Transaccion
-from pda.modulos.transacciones.dominio.fabricas import FabricaTransacciones
-from pda.modulos.transacciones.dominio.repositorios import RepositorioTransacciones
-from pda.modulos.transacciones.infraestructura.dto import Transaccion as TransaccionDTO
-from pda.modulos.transacciones.infraestructura.mapeadores import MapeadorTransaccion
+from src.pda.config.db import db
+from src.pda.modulos.transacciones.dominio.entidades import Transaccion
+from src.pda.modulos.transacciones.dominio.fabricas import FabricaTransacciones
+from src.pda.modulos.transacciones.dominio.repositorios import RepositorioTransacciones
+from src.pda.modulos.transacciones.infraestructura.dto import Transaccion as TransaccionDTO
+from src.pda.modulos.transacciones.infraestructura.mapeadores import MapeadorTransaccion
 
 class RepositorioTransaccionesSQLite(RepositorioTransacciones):
     def __init__(self):

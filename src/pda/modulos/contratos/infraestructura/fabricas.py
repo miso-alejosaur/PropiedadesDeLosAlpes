@@ -1,8 +1,8 @@
 from dataclasses import dataclass
-from pda.modulos.contratos.dominio.repositorios import RepositorioContratos
-from pda.modulos.contratos.infraestructura.repositorios import RepositorioContratosPostgreSQL
+from src.pda.modulos.contratos.dominio.repositorios import RepositorioContratos
+from src.pda.modulos.contratos.infraestructura.repositorios import RepositorioContratosPostgreSQL
 
-from pda.seedwork.dominio.repositorios import Repositorio
+from src.pda.seedwork.dominio.repositorios import Repositorio
 
 
 @dataclass

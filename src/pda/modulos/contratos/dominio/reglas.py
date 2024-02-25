@@ -1,5 +1,5 @@
-from pda.modulos.contratos.dominio.objetos_valor import Valor, Fechas, TipoContrato, TipoContratoEnum
-from pda.seedwork.dominio.reglas import ReglaNegocio
+from src.pda.modulos.contratos.dominio.objetos_valor import Valor, Fechas, TipoContrato, TipoContratoEnum
+from src.pda.seedwork.dominio.reglas import ReglaNegocio
 
 class ValorNoNegativo(ReglaNegocio):
 

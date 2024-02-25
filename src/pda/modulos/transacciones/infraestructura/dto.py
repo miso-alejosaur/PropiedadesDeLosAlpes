@@ -1,18 +1,19 @@
-from pda.config.db import db
+from sqlalchemy import Column, String, DateTime, Integer, Float, ForeignKey
+from sqlalchemy.orm import relationship
 
-Base = db.declarative_base()
+from src.pda.config.base import Base
 
-class Divisa(db.Model):
+class Divisa(Base):
     __tablename__ = "divisa"
-    id = db.Column(db.String, primary_key=True)
-    pais = db.Column(db.String, nullable=False)
-    nombre = db.Column(db.String, nullable=False)
+    id = Column(String, primary_key=True)
+    pais = Column(String, nullable=False)
+    nombre = Column(String, nullable=False)
 
-    transacciones = db.relationship("Transaccion", backref="divisa")
+    transacciones = relationship("Transaccion", backref="divisa")
 
-class Transaccion(db.Model):
+class Transaccion(Base):
     __tablename__ = "transaccion"
-    id = db.Column(db.String, primary_key=True)
-    valor =  db.Column(db.Float, nullable=False)
-    fecha =  db.Column(db.DateTime, nullable=False)
-    divisa_id = db.Column(db.String, db.ForeignKey("divisa.id"))
+    id = Column(String, primary_key=True)
+    valor = Column(Float, nullable=False)
+    fecha = Column(DateTime, nullable=False)
+    divisa_id = Column(String, ForeignKey("divisa.id"))

@@ -1,10 +1,10 @@
 from uuid import UUID
 from pda.config.db import db
-from pda.modulos.contratos.dominio.entidades import Contrato
-from pda.modulos.contratos.dominio.fabricas import FabricaContratos
-from pda.modulos.contratos.dominio.repositorios import RepositorioContratos
-from pda.modulos.contratos.infraestructura.dto import Contrato as ContratoDTO
-from pda.modulos.contratos.infraestructura.mapeadores import MapeadorContrato
+from src.pda.modulos.contratos.dominio.entidades import Contrato
+from src.pda.modulos.contratos.dominio.fabricas import FabricaContratos
+from src.pda.modulos.contratos.dominio.repositorios import RepositorioContratos
+from src.pda.modulos.contratos.infraestructura.dto import Contrato as ContratoDTO
+from src.pda.modulos.contratos.infraestructura.mapeadores import MapeadorContrato
 
 class RepositorioContratosPostgreSQL(RepositorioContratos):
     def __init__(self):

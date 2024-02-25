@@ -1,6 +1,6 @@
 from datetime import datetime
 from src.pda.modulos.contratos.dominio.entidades import Contrato
-from src.pda.modulos.contratos.dominio.objetos_valor import Divisa, Fechas, Valor, TipoContrato, Pais
+from src.pda.modulos.contratos.dominio.objetos_valor import Divisa, Fechas, Valor, TipoContrato, Pais, ValorAbonado
 from src.pda.modulos.contratos.infraestructura.dto import Contrato as ContratoDTO
 from src.pda.seedwork.dominio.repositorios import Mapeador
 
@@ -17,6 +17,7 @@ class MapeadorContrato(Mapeador):
         contrato_dto.divisa = entidad.divisa.codigo
         contrato_dto.pais = entidad.pais.nombre
         contrato_dto.tipo_contrato = entidad.tipo_contrato.tipo_contrato
+        contrato_dto.valor_abonado = entidad.valor.abono
 
         return contrato_dto
 
@@ -24,7 +25,7 @@ class MapeadorContrato(Mapeador):
         contrato = Contrato(dto.id)
         contrato.divisa = Divisa(dto.divisa)
         contrato.fechas = Fechas(dto.fecha_inicio, dto.fecha_vencimiento)
-        contrato.valor = Valor(dto.valor)
+        contrato.valor = Valor(dto.valor, dto.valor_abonado)
         contrato.pais = Pais(dto.pais)
         contrato.tipo_contrato = TipoContrato(dto.tipo_contrato)
 

@@ -11,3 +11,4 @@ class Contrato(Base):
     tipo_contrato = Column(Integer, nullable=False)
     pais = Column(String, nullable=False)
     divisa = Column(String, nullable=False)
+    valor_abonado = Column(Float, nullable=False)

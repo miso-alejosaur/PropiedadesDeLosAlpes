@@ -6,6 +6,7 @@ from src.pda.seedwork.dominio.objetos_valor import ObjetoValor
 @dataclass(frozen=True)
 class Valor(ObjetoValor):
     monto: float
+    abono: float
 
 @dataclass(frozen=True)
 class Fechas():
@@ -22,7 +23,7 @@ class TipoContrato():
 
 @dataclass(frozen=True)
 class Pais():
-    nombre: str
+    nombre: str 
 
 class TipoContratoEnum(Enum):
     COMPRA_VENTA = 1

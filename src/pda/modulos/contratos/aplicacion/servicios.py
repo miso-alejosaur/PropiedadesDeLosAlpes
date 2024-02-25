@@ -21,7 +21,7 @@ class ServicioContrato(Servicio):
     def fabrica_contratos(self):
         return self._fabrica_contratos
 
-    def crear_transaccion(self) -> Contrato:
+    def crear_contrato(self) -> Contrato:
         
         repo = self.fabrica_repositorio.crear_objeto(RepositorioContratos.__class__)
 

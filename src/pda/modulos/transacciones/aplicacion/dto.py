@@ -1,7 +1,7 @@
 
 from dataclasses import dataclass, field
 
-from pda.seedwork.aplicacion.dto import DTO
+from src.pda.seedwork.aplicacion.dto import DTO
 
 
 @dataclass(frozen=True)

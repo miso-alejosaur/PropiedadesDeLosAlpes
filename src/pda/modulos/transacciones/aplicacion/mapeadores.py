@@ -1,9 +1,9 @@
 from datetime import date, time, datetime
-from pda.modulos.transacciones.aplicacion.dto import TransaccionDTO
-from pda.modulos.transacciones.dominio.entidades import Transaccion
-from pda.modulos.transacciones.dominio.objetos_valor import Divisa, Fecha, Valor
-from pda.seedwork.dominio.repositorios import Mapeador as RepMap
-from pda.seedwork.aplicacion.dto import Mapeador as AppMap
+from src.pda.modulos.transacciones.aplicacion.dto import TransaccionDTO
+from src.pda.modulos.transacciones.dominio.entidades import Transaccion
+from src.pda.modulos.transacciones.dominio.objetos_valor import Divisa, Fecha, Valor
+from src.pda.seedwork.dominio.repositorios import Mapeador as RepMap
+from src.pda.seedwork.aplicacion.dto import Mapeador as AppMap
 
 class MapeadorTransaccion(RepMap):
     _FORMATO_FECHA = '%Y-%m-%dT%H:%M:%SZ'

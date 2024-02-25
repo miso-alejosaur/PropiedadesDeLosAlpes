@@ -5,12 +5,12 @@ class ValorNoNegativo(ReglaNegocio):
 
     valor: Valor
 
-    def __init__(self, valor, mensaje='El valor debe ser no negativo'):
+    def __init__(self, valor, mensaje='El valor no debe tener montos negativos o vacios'):
         super().__init__(mensaje)
         self.valor = valor
 
     def es_valido(self) -> bool:
-        return self.valor.monto > 0
+        return self.valor.monto > 0 and self.valor.abono >= 0
     
 class VencimientoValido(ReglaNegocio):
 

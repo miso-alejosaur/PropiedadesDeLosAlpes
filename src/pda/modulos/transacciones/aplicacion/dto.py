@@ -9,3 +9,4 @@ class TransaccionDTO(DTO):
     valor: str = field(default_factory=str)
     fecha: str = field(default_factory=str)
     divisa: str = field(default_factory=str)
+    contrato: str = field(default_factory=str)

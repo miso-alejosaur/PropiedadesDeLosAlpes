@@ -12,4 +12,5 @@ class Transaccion(AgregacionRaiz):
     valor: ov.Valor = field(default_factory=ov.Valor)
     fecha: ov.Fecha = field(default_factory=ov.Fecha)
     divisa: ov.Divisa = field(default_factory=ov.Divisa)
+    contrato: ov.Contrato = field(default_factory=ov.Contrato)
     

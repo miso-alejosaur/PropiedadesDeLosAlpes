@@ -1,4 +1,4 @@
-from attr import dataclass
+from dataclasses import dataclass
 from src.pda.modulos.transacciones.dominio.entidades import Transaccion
 from src.pda.modulos.transacciones.dominio.reglas import ValorNoNegativo
 from src.pda.seedwork.dominio.entidades import Entidad

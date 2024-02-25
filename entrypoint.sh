@@ -9,6 +9,6 @@ else
         HOME=/root poetry run gunicorn --bind :80 --workers 1 --threads 1 src.app:gunicorn_app
     else
         poetry run python src/pda/config/exec_create_all.py
-        # poetry run python src/app.py
+        poetry run python src/pda/api/__init__.py
     fi
 fi

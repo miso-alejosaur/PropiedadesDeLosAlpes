@@ -1,6 +1,7 @@
 import json
 from flask import redirect, render_template, request, session, url_for
 from flask import Response
+from pda.modulos.transacciones.aplicacion.mapeadores import MapTransaccionDTOJson
 from pda.modulos.transacciones.aplicacion.servicios import ServicioTransaccion
 
 import pda.seedwork.presentacion.api as api
@@ -10,14 +11,16 @@ bp = api.crear_blueprint('transacciones', '/transacciones')
 @bp.route('/transaccion', methods=('POST',))
 def crear_transaccion():
     try:
-        #transaccion_dict = request.json
+        transaccion_dict = request.json
+
+        map_transaccion = MapTransaccionDTOJson()
+        transaccion_dto = map_transaccion.externo_a_dto(transaccion_dict)
 
         servicio = ServicioTransaccion()
-        dto_final = servicio.crear_transaccion()
+        dto_final = servicio.crear_transaccion(transaccion_dto)
 
-        return "done"
+        return map_transaccion.dto_a_externo(dto_final)
     except Exception as e:
-        raise e
         return Response(json.dumps(dict(error=str(e))), status=400, mimetype='application/json')
 
 '''

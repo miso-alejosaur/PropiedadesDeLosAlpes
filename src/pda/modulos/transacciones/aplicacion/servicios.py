@@ -1,6 +1,7 @@
 
 from datetime import date, time
-import uuid
+from pda.modulos.transacciones.aplicacion.dto import TransaccionDTO
+from pda.modulos.transacciones.aplicacion.mapeadores import MapeadorTransaccion
 from pda.modulos.transacciones.dominio.entidades import Transaccion
 from pda.modulos.transacciones.dominio.fabricas import FabricaTransacciones
 from pda.modulos.transacciones.dominio.objetos_valor import Divisa, Fecha, Valor
@@ -22,13 +23,11 @@ class ServicioTransaccion(Servicio):
     def fabrica_transacciones(self):
         return self._fabrica_transacciones
 
-    def crear_transaccion(self) -> Transaccion:
+    def crear_transaccion(self, transaccion_dto: TransaccionDTO) -> Transaccion:
         
         repo = self.fabrica_repositorio.crear_objeto(RepositorioTransacciones.__class__)
-        transaccion = Transaccion(valor=Valor(monto=123.2), 
-                                  fecha=Fecha(fecha=date(2020, 12, 12), 
-                                              hora=time(10, 20, 0)), 
-                                  divisa=Divisa("COP", "peso", "col"))
+        transaccion = self.fabrica_transacciones.crear_objeto(transaccion_dto, MapeadorTransaccion())
+        
         repo.agregar(transaccion)
 
-        return "ok"
+        return self.fabrica_transacciones.crear_objeto(transaccion, MapeadorTransaccion())

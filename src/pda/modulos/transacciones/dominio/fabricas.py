@@ -14,6 +14,6 @@ class FabricaTransacciones(Fabrica):
         else:
             transaccion: Transaccion = mapeador.dto_a_entidad(obj)
 
-            self.validar_regla(ValorNoNegativo(transaccion))
+            self.validar_regla(ValorNoNegativo(transaccion.valor))
 
             return transaccion

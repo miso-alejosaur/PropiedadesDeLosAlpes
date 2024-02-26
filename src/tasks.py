@@ -1,11 +1,15 @@
 #Example
 
-from tasks import Celery
+from celery import Celery
 
-app = Celery('tasks', broker='redis://broker:6379', backend='redis://broker:6379')
+app = Celery('tasks',
+            broker='redis://broker:6379',
+            include=['src.example.tasks']
+            )
 
 @app.task
 def add(x, y):
+    print(f"{x}+{y}={x+y}")
     return x + y
 
 #add.delay(10, 10)

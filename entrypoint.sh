@@ -1,14 +1,7 @@
 #!/bin/bash
-if $TEST; then
-    poetry run python src/database/exec_create_all.py
-    poetry run coverage run -m pytest
-    poetry run coverage report --fail-under=70
+if $CELERY; then
+    poetry run celery -A src.tasks worker -l INFO
 else
-    if $GUNICORN; then
-        poetry run python src/database/exec_create_all.py
-        HOME=/root poetry run gunicorn --bind :80 --workers 1 --threads 1 src.app:gunicorn_app
-    else
-        poetry run python src/pda/config/exec_create_all.py
-        poetry run python src/pda/api/__init__.py
-    fi
+    poetry run python src/pda/config/exec_create_all.py
+    poetry run python src/pda/api/__init__.py
 fi

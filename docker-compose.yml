@@ -15,13 +15,35 @@ services:
     deploy:  
       resources:
         limits:
-          cpus: '0.5'
+          cpus: '0.3'
           memory: 300M
+
+  broker:
+    image: redis:7.2-bookworm
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 300M
+    networks:
+      - app_net
+
+  worker:
+    build: .
+    environment:
+      CELERY: true
+    volumes:
+      - .:/usr/app
+    networks:
+      - app_net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 400M
 
   app:
     build: .
-    environment:
-      GUNICORN: false
     volumes:
       - .:/usr/app
     ports:
@@ -31,21 +53,13 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'
-          memory: 300M
+          cpus: '0.4'
+          memory: 400M
     depends_on:
       database:
         condition: service_started
-
-  broker:
-    image: redis:7.2-bookworm
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 150M
-    networks:
-      - app_net
+      broker:
+        condition: service_started
 
 networks:
   app_net:

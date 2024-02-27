@@ -15,6 +15,6 @@ class Transaccion(Base):
     __tablename__ = "transaccion"
     id = Column(String, primary_key=True)
     valor = Column(Float, nullable=False)
-    fecha = Column(DateTime, nullable=False)
+    fecha = Column(String, nullable=False)
     divisa_id = Column(String, ForeignKey("divisa.id"))
     id_contrato = Column(String, nullable=False)

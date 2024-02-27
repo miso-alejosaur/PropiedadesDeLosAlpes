@@ -4,7 +4,7 @@ from celery import Celery
 
 app = Celery('tasks',
             broker='redis://broker:6379',
-            include=['src.example.tasks', 'src.pda.modulos.transacciones.aplicacion.servicios']
+            include=['src.example.tasks', 'src.pda.modulos.transacciones.infraestructura.repositorios']
             )
 
 @app.task

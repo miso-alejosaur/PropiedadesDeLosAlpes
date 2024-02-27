@@ -38,7 +38,7 @@ def crear_transaccion_asincrona():
         #comando = CrearTransaccion(transaccion_dto.valor, transaccion_dto.fecha, transaccion_dto.divisa, transaccion_dto.contrato)
 
         servicio = ServicioTransaccion()
-        servicio.crear_transaccion.delay(transaccion_dto)
+        servicio.crear_transaccion(transaccion_dto)
         
         return Response('{}', status=202, mimetype='application/json')
     except ExcepcionDominio as e:

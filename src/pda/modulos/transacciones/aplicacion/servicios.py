@@ -9,8 +9,6 @@ from src.pda.modulos.transacciones.dominio.repositorios import RepositorioTransa
 from src.pda.modulos.transacciones.infraestructura.fabricas import FabricaRepositorio
 from src.pda.seedwork.aplicacion.servicios import Servicio
 from src.tasks import app
-from celery import Celery
-from celery.contrib.methods import task_method
 
 class ServicioTransaccion(Servicio):
     def __init__(self):
@@ -25,7 +23,6 @@ class ServicioTransaccion(Servicio):
     def fabrica_transacciones(self):
         return self._fabrica_transacciones
 
-    @app.task(filter)
     def crear_transaccion(self, transaccion_dto: TransaccionDTO) -> Transaccion:
         
         repo = self.fabrica_repositorio.crear_objeto(RepositorioTransacciones.__class__)

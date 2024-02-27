@@ -14,8 +14,7 @@ class MapeadorTransaccion(Mapeador):
         transaccion_dto.id = str(entidad.id)
         transaccion_dto.valor = entidad.valor.monto
         print(entidad.fecha.fecha)
-        transaccion_dto.fecha = datetime(entidad.fecha.fecha.year, entidad.fecha.fecha.month, entidad.fecha.fecha.day, entidad.fecha.hora.hour, entidad.fecha.hora.minute)
-        transaccion_dto.divisa_id = entidad.divisa.codigo
+        transaccion_dto.fecha = entidad.fecha.fecha.strftime('%Y-%m-%d')
         transaccion_dto.id_contrato = entidad.contrato.id_contrato
 
         return transaccion_dto

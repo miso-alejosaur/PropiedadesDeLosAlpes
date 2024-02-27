@@ -3,10 +3,10 @@ from flask import redirect, render_template, request, session, url_for
 from flask import Response
 from src.pda.modulos.transacciones.aplicacion.mapeadores import MapTransaccionDTOJson
 from src.pda.modulos.transacciones.aplicacion.servicios import ServicioTransaccion
-from src.pda.modulos.transacciones.aplicacion.comandos.crear_transaccion import CrearTransaccion
+#from src.pda.modulos.transacciones.aplicacion.comandos.crear_transaccion import CrearTransaccion
 from src.pda.seedwork.dominio.excepciones import ExcepcionDominio
-from src.pda.seedwork.aplicacion.comandos import ejecutar_commando
-from src.pda.modulos.transacciones.aplicacion.comandos.crear_transaccion import CrearTransaccionHandler
+#from src.pda.seedwork.aplicacion.comandos import ejecutar_commando
+#from src.pda.modulos.transacciones.aplicacion.comandos.crear_transaccion import CrearTransaccionHandler
 
 import src.pda.seedwork.presentacion.api as api
 

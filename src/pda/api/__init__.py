@@ -14,5 +14,3 @@ if __name__ == "__main__":
     def health():
         return "pong"
     app.run(debug=True, port=80, host='0.0.0.0')
-else:
-    gunicorn_app = create_app()

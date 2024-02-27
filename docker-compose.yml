@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  app_db:
+  database:
     image: postgres:15-bullseye
     environment:
       POSTGRES_DB: postgres
@@ -15,13 +15,35 @@ services:
     deploy:  
       resources:
         limits:
-          cpus: '0.2'
+          cpus: '0.3'
           memory: 300M
+
+  broker:
+    image: redis:7.2-bookworm
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 300M
+    networks:
+      - app_net
+
+  worker:
+    build: .
+    environment:
+      CELERY: true
+    volumes:
+      - .:/usr/app
+    networks:
+      - app_net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 400M
 
   app:
     build: .
-    environment:
-      GUNICORN: false
     volumes:
       - .:/usr/app
     ports:
@@ -31,10 +53,12 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.2'
-          memory: 300M
+          cpus: '0.4'
+          memory: 400M
     depends_on:
-      app_db:
+      database:
+        condition: service_started
+      broker:
         condition: service_started
 
 networks:

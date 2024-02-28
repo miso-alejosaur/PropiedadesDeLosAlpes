@@ -3,7 +3,6 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONPATH="$PYTHONPATH:/usr/app"
 ENV POETRY_HOME="/usr/local"
-ENV CELERY=false
 RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/usr/local python3 -
 WORKDIR /usr/app
 COPY . .

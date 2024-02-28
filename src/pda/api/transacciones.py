@@ -3,10 +3,10 @@ from flask import redirect, render_template, request, session, url_for
 from flask import Response
 from src.pda.modulos.transacciones.aplicacion.mapeadores import MapTransaccionDTOJson
 from src.pda.modulos.transacciones.aplicacion.servicios import ServicioTransaccion
-#from src.pda.modulos.transacciones.aplicacion.comandos.crear_transaccion import CrearTransaccion
+from src.pda.modulos.transacciones.aplicacion.comandos.crear_transaccion import CrearTransaccion
 from src.pda.seedwork.dominio.excepciones import ExcepcionDominio
-#from src.pda.seedwork.aplicacion.comandos import ejecutar_commando
-#from src.pda.modulos.transacciones.aplicacion.comandos.crear_transaccion import CrearTransaccionHandler
+from src.pda.seedwork.aplicacion.comandos import ejecutar_commando
+from src.pda.modulos.transacciones.aplicacion.comandos.crear_transaccion import CrearTransaccionHandler
 
 import src.pda.seedwork.presentacion.api as api
 
@@ -35,10 +35,8 @@ def crear_transaccion_asincrona():
         map_transaccion = MapTransaccionDTOJson()
         transaccion_dto = map_transaccion.externo_a_dto(transaccion_dict)
 
-        #comando = CrearTransaccion(transaccion_dto.valor, transaccion_dto.fecha, transaccion_dto.divisa, transaccion_dto.contrato)
-
-        servicio = ServicioTransaccion()
-        servicio.crear_transaccion(transaccion_dto)
+        comando = CrearTransaccion(transaccion_dto.valor, transaccion_dto.fecha, transaccion_dto.divisa, transaccion_dto.contrato)
+        ejecutar_commando(comando)
         
         return Response('{}', status=202, mimetype='application/json')
     except ExcepcionDominio as e:

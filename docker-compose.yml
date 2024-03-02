@@ -11,7 +11,7 @@ services:
     ports:
       - 6100:5432
     networks:
-      - app_net
+      - pulsar
     deploy:  
       resources:
         limits:
@@ -68,15 +68,12 @@ services:
       - clusterName=cluster-a
       - zkServers=zookeeper:2181
       - metadataServiceUri=metadata-store:zk:zookeeper:2181
-      - useHostNameAsBookieID=true
     depends_on:
       zookeeper:
         condition: service_healthy
       pulsar-init:
         condition: service_completed_successfully
   # Map the local directory to the container to avoid bookie startup failure due to insufficient container disks.
-    volumes:
-      - ./data/bookkeeper:/pulsar/data/bookkeeper
     command: bash -c "bin/apply-config-from-env.py conf/bookkeeper.conf
       && exec bin/pulsar bookie"
 
@@ -96,7 +93,7 @@ services:
       - managedLedgerDefaultWriteQuorum=1
       - managedLedgerDefaultAckQuorum=1
       - advertisedAddress=broker
-      - advertisedListeners=external:pulsar://127.0.0.1:6650
+      - advertisedListeners=external:pulsar://broker:6650
     depends_on:
       zookeeper:
         condition: service_healthy
@@ -115,7 +112,6 @@ services:
     ports:
       - 6150:80
     networks:
-      - app_net
       - pulsar
     deploy:
       resources:
@@ -132,9 +128,6 @@ services:
       - PULSAR_ADDRESS=broker
 
 networks:
-  app_net:
-    driver: bridge
-    name: app_net
   pulsar:
     driver: bridge
     name: pulsar

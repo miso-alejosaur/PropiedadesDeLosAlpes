@@ -5,7 +5,6 @@ from src.pda.seedwork.infraestructura.schema.v1.comandos import (ComandoIntegrac
 class ComandoCrearTransaccionPayload(ComandoIntegracion):
     valor = Float()
     fecha = String()
-    hora = String()
     divisa = String()
     contrato = String()
 

@@ -1,6 +1,5 @@
 import pulsar
 from pulsar.schema import *
-
 from src.pda.modulos.transacciones.infraestructura.schema.v1.eventos import EventoTransaccionCreada, TransaccionCreadaPayload
 from src.pda.modulos.transacciones.infraestructura.schema.v1.comandos import ComandoCrearTransaccion, ComandoCrearTransaccionPayload
 from src.pda.seedwork.infraestructura import utils
@@ -10,7 +9,7 @@ import datetime
 class Despachador:
     def _publicar_mensaje(self, mensaje, topico, schema):
         cliente = pulsar.Client(f'pulsar://{utils.broker_host()}:6650')
-        publicador = cliente.create_producer(topico, schema=AvroSchema(EventoTransaccionCreada))
+        publicador = cliente.create_producer(topic=topico, schema=schema)
         publicador.send(mensaje)
         cliente.close()
 
@@ -31,7 +30,6 @@ class Despachador:
         payload = ComandoCrearTransaccionPayload(
             valor=float(comando.valor),
             fecha=str(comando.fecha),
-            hora=str(comando.hora),
             divisa=str(comando.divisa),
             contrato=str(comando.contrato)
         )

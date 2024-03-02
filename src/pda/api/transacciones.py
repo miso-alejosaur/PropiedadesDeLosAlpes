@@ -7,6 +7,7 @@ from src.pda.modulos.transacciones.aplicacion.comandos.crear_transaccion import 
 from src.pda.seedwork.dominio.excepciones import ExcepcionDominio
 from src.pda.seedwork.aplicacion.comandos import ejecutar_commando
 from src.pda.modulos.transacciones.aplicacion.comandos.crear_transaccion import CrearTransaccionHandler
+from src.pda.modulos.transacciones.infraestructura.despachadores import Despachador
 
 import src.pda.seedwork.presentacion.api as api
 
@@ -36,7 +37,8 @@ def crear_transaccion_asincrona():
         transaccion_dto = map_transaccion.externo_a_dto(transaccion_dict)
 
         comando = CrearTransaccion(transaccion_dto.valor, transaccion_dto.fecha, transaccion_dto.divisa, transaccion_dto.contrato)
-        ejecutar_commando(comando)
+        despachador = Despachador()
+        despachador.publicar_comando(comando=comando, topico='comandos-transaccion')
         
         return Response('{}', status=202, mimetype='application/json')
     except ExcepcionDominio as e:

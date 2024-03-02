@@ -1,4 +1,4 @@
-from src.pda.config.session import Session
+from src.pda.config.db import db
 from src.pda.seedwork.infraestructura.uow import UnidadTrabajo, Batch
 
 class UnidadTrabajoSQLAlchemy(UnidadTrabajo):
@@ -17,8 +17,7 @@ class UnidadTrabajoSQLAlchemy(UnidadTrabajo):
 
     @property
     def savepoints(self) -> list:
-        session = Session()
-        return list[session.get_nested_transaction()]
+        return list[db.session.get_nested_transaction()]
 
     @property
     def batches(self) -> list[Batch]:
@@ -28,8 +27,8 @@ class UnidadTrabajoSQLAlchemy(UnidadTrabajo):
         for batch in self.batches:
             lock = batch.lock
             batch.operacion(*batch.args, **batch.kwargs)
-        session = Session()
-        session.commit()
+
+        db.session.commit()
 
         super().commit()
 
@@ -37,11 +36,9 @@ class UnidadTrabajoSQLAlchemy(UnidadTrabajo):
         if savepoint:
             savepoint.rollback()
         else:
-            session = Session()
-            session.rollback()
+            db.session.rollback()
         
         super().rollback()
     
     def savepoint(self):
-        session = Session()
-        session.begin_nested()
+        db.session.begin_nested()

@@ -17,6 +17,23 @@ services:
         limits:
           cpus: '0.3'
           memory: 300M
+  
+  database-propiedades:
+    image: postgres:15-bullseye
+    environment:
+      POSTGRES_DB: postgrespropiedades
+      POSTGRES_USER: postgrespropiedades
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_PORT: 5432
+    ports:
+      - 6110:5432
+    networks:
+      - pulsar
+    deploy:  
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 300M
 
   # Start zookeeper
   zookeeper:
@@ -74,6 +91,8 @@ services:
       pulsar-init:
         condition: service_completed_successfully
   # Map the local directory to the container to avoid bookie startup failure due to insufficient container disks.
+    volumes:
+      - ./data/bookkeeper:/pulsar/data/bookkeeper
     command: bash -c "bin/apply-config-from-env.py conf/bookkeeper.conf
       && exec bin/pulsar bookie"
 
@@ -106,11 +125,12 @@ services:
       &&  exec bin/pulsar broker"
 
   app:
-    build: .
+    build: 
+      dockerfile: ./app.Dockerfile
     volumes:
       - .:/usr/app
     ports:
-      - 6150:80
+      - 6160:80
     networks:
       - pulsar
     deploy:
@@ -124,7 +144,28 @@ services:
       broker:
         condition: service_started
     environment:
-      - AEROALPES_ADDRESS=aeroalpes
+      - PULSAR_ADDRESS=broker
+
+  app-auditoria:
+    build: 
+      dockerfile: ./auditoria.Dockerfile
+    volumes:
+      - .:/usr/app
+    ports:
+      - 6150:80
+    networks:
+      - pulsar
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: 400M
+    depends_on:
+      database-propiedades:
+        condition: service_started
+      broker:
+        condition: service_started
+    environment:
       - PULSAR_ADDRESS=broker
 
 networks:

@@ -20,5 +20,6 @@ def dar_contrato_usando_query(id=None):
             return [{'message': 'GET!'}]
     except ExcepcionNoEncontrado:
         return Response(json.dumps(dict(error='Contrato no encontrado.')), status=404, mimetype='application/json')
-    except Exception:
+    except Exception as e:
+        print(str(e))
         return Response(json.dumps(dict(error='Internal server error.')), status=500, mimetype='application/json')

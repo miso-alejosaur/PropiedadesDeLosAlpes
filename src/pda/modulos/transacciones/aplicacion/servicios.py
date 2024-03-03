@@ -9,7 +9,6 @@ from src.pda.modulos.transacciones.dominio.repositorios import RepositorioTransa
 from src.pda.modulos.transacciones.infraestructura.fabricas import FabricaRepositorio
 from src.pda.seedwork.aplicacion.servicios import Servicio
 
-
 class ServicioTransaccion(Servicio):
     def __init__(self):
         self._fabrica_repositorio: FabricaRepositorio = FabricaRepositorio()

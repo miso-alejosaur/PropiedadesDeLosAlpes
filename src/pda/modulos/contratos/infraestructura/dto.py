@@ -1,14 +1,15 @@
 from sqlalchemy import Column, String, DateTime, Integer, Float
+from src.pda.config.db import db
 
-from src.pda.config.base import Base
+Base = db.declarative_base()
 
-class Contrato(Base):
+class Contrato(db.Model):
     __tablename__ = "contrato"
-    id = Column(String, primary_key=True)
-    valor =  Column(Float, nullable=False)
-    fecha_inicio =  Column(DateTime, nullable=False)
-    fecha_vencimiento =  Column(DateTime, nullable=True)
-    tipo_contrato = Column(Integer, nullable=False)
-    pais = Column(String, nullable=False)
-    divisa = Column(String, nullable=False)
-    valor_abonado = Column(Float, nullable=False)
+    id = db.Column(String, primary_key=True)
+    valor =  db.Column(Float, nullable=False)
+    fecha_inicio =  db.Column(DateTime, nullable=False)
+    fecha_vencimiento =  db.Column(DateTime, nullable=True)
+    tipo_contrato = db.Column(Integer, nullable=False)
+    pais = db.Column(String, nullable=False)
+    divisa = db.Column(String, nullable=False)
+    valor_abonado = db.Column(Float, nullable=False)

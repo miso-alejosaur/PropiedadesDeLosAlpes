@@ -13,7 +13,9 @@ class MapeadorContrato(Mapeador):
         contrato_dto.id = str(entidad.id)
         contrato_dto.valor = entidad.valor.monto
         contrato_dto.fecha_inicio = datetime(entidad.fechas.fecha_inicio.year, entidad.fechas.fecha_inicio.month, entidad.fechas.fecha_inicio.day)
-        contrato_dto.fecha_vencimiento = datetime(entidad.fechas.fecha_vencimiento.year, entidad.fechas.fecha_vencimiento.month, entidad.fechas.fecha_vencimiento.day)
+        contrato_dto.fecha_vencimiento = datetime(entidad.fechas.fecha_vencimiento.year, 
+                                                  entidad.fechas.fecha_vencimiento.month, 
+                                                  entidad.fechas.fecha_vencimiento.day) if entidad.fechas.fecha_vencimiento else None
         contrato_dto.divisa = entidad.divisa.codigo
         contrato_dto.pais = entidad.pais.nombre
         contrato_dto.tipo_contrato = entidad.tipo_contrato.tipo_contrato
@@ -22,9 +24,11 @@ class MapeadorContrato(Mapeador):
         return contrato_dto
 
     def dto_a_entidad(self, dto: ContratoDTO) -> Contrato:
-        contrato = Contrato(dto.id,Valor(dto.valor, dto.valor_abonado), 
-                            Fechas(dto.fecha_inicio, dto.fecha_vencimiento),
-                            TipoContrato(dto.tipo_contrato), 
-                            Divisa(dto.divisa), Pais(dto.pais))
+        contrato = Contrato(id=dto.id, 
+                            valor=Valor(monto=dto.valor, abono=dto.valor_abonado), 
+                            fechas=Fechas(fecha_inicio=dto.fecha_inicio, fecha_vencimiento=dto.fecha_vencimiento), 
+                            tipo_contrato=TipoContrato(tipo_contrato=dto.tipo_contrato),
+                            divisa=Divisa(codigo=dto.divisa),
+                            pais=Pais(nombre=dto.pais))
 
         return contrato

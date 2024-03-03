@@ -11,3 +11,8 @@ class PropiedadDTO(DTO):
     divisa: str = field(default_factory=str)
     pais: str = field(default_factory=str)
     indice_confiabilidad: float = field(default_factory=float)
+
+@dataclass(frozen=True)
+class IndiceConfiabilidadDTO(DTO):
+    id_propiedad: str = field(default_factory=str)
+    indice_confiabilidad: float = field(default_factory=float)

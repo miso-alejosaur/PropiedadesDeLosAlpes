@@ -21,7 +21,7 @@ class Despachador:
             valor_arrendamiento=float(evento.valor_arrendamiento),
             divisa=str(evento.divisa),
             pais=str(evento.pais),
-            indice_confiabilidad=float(evento.indice_disponibilidad)
+            indice_confiabilidad=float(evento.indice_confiabilidad)
             )
         evento_integracion = EventoPropiedadDisponible(data=payload)
         self._publicar_mensaje(evento_integracion, topico, AvroSchema(EventoPropiedadDisponible))

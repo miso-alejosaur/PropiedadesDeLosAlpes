@@ -1,5 +1,5 @@
 from datetime import date, time, datetime
-from src.auditoria.modulos.propiedades.aplicacion.dto import PropiedadDTO
+from src.auditoria.modulos.propiedades.aplicacion.dto import PropiedadDTO, IndiceConfiabilidadDTO
 from src.auditoria.modulos.propiedades.dominio.entidades import Propiedad
 from src.auditoria.modulos.propiedades.dominio.objetos_valor import IndiceConfiabilidad, Fechas, Valor, TipoPropiedad, Divisa, Pais
 from src.auditoria.seedwork.dominio.repositorios import Mapeador as RepMap
@@ -45,4 +45,13 @@ class MapPropiedadDTOJson(AppMap):
         return propiedad_dto
 
     def dto_a_externo(self, dto: PropiedadDTO) -> dict:
+        return dto.__dict__
+
+class MapIndiceConfiabilidadDTOJson(AppMap):
+    def externo_a_dto(self, externo: dict, id: float) -> IndiceConfiabilidadDTO:
+        propiedad_dto = IndiceConfiabilidadDTO(id, externo["indice_confiabilidad"])
+
+        return propiedad_dto
+
+    def dto_a_externo(self, dto: IndiceConfiabilidadDTO) -> dict:
         return dto.__dict__

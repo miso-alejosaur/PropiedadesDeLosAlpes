@@ -130,7 +130,7 @@ services:
     volumes:
       - .:/usr/app
     ports:
-      - 6160:80
+      - 6150:80
     networks:
       - pulsar
     deploy:
@@ -152,7 +152,7 @@ services:
     volumes:
       - .:/usr/app
     ports:
-      - 6150:80
+      - 6160:80
     networks:
       - pulsar
     deploy:

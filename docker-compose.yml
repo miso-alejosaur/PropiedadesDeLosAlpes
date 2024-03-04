@@ -167,6 +167,27 @@ services:
         condition: service_started
     environment:
       - PULSAR_ADDRESS=broker
+app-coreanalitica:
+    build: 
+      dockerfile: ./coreanalitica.Dockerfile
+    volumes:
+      - .:/usr/app
+    ports:
+      - 6161:80
+    networks:
+      - pulsar
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: 400M
+    depends_on:
+      database-propiedades:
+        condition: service_started
+      broker:
+        condition: service_started
+    environment:
+      - PULSAR_ADDRESS=broker
 
 networks:
   pulsar:

@@ -17,6 +17,6 @@ class Metricas(AgregacionRaiz):
         self.valor = metrica.valor
         self.pais = metrica.pais
 
-        self.agregar_evento(PromediosValoresActualizados(id=self.pais,
-                                                         self = ov.Valor(valor_arrendamiento=self.valor.valor_arrendamiento,
-                                                                         valor_compra=self.valor.valor_compra)))
+        self.agregar_evento(PromediosValoresActualizados(pais =self.pais.nombre,
+                                                         valor_arrendamiento=self.valor.valor_arrendamiento,
+                                                         valor_compra=self.valor.valor_compra))

@@ -8,4 +8,5 @@ class Metricas(db.Model):
     id = db.Column(String, primary_key=True)
     valor_compra_avg =  db.Column(Float, nullable=False)
     valor_arrendamiento_avg =  db.Column(Float, nullable=False)
+    current_count = db.Column(Integer, nullable=False)
     pais = db.Column(String, nullable=False)

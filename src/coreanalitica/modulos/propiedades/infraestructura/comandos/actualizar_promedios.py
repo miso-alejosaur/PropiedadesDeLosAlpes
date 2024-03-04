@@ -1,3 +1,4 @@
+from auditoria.modulos.propiedades.dominio.objetos_valor import Pais, Valor
 from src.coreanalitica.seedwork.infraestructura.comandos import Comando
 from .base import PropiedadBaseHandler
 from dataclasses import dataclass, field
@@ -20,7 +21,11 @@ class ActualizarPromediosHandler(PropiedadBaseHandler):
 
         try:
             repositorio = self.fabrica_repositorio.crear_objeto(RepositorioMetricas.__class__)
-            metrica: Metricas = repositorio.actualizar(comando.pais,comando.valor_arrendamiento, comando.valor_compra)
+
+            entity = Metricas(valor=Valor(valor_compra=comando.valor_compra, valor_arrendamiento=comando.valor_arrendamiento),
+                                         pais=Pais(nombre=comando.pais))
+
+            metrica: Metricas = repositorio.actualizar(entity=entity)
             metrica.actualizar_valores(metrica)
             for evento in metrica.eventos:
                 if isinstance(evento, EventoDominio):

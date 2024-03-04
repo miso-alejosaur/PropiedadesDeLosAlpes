@@ -1,4 +1,5 @@
 from uuid import UUID
+from auditoria.modulos.propiedades.dominio.objetos_valor import Pais, Valor
 from src.coreanalitica.config.db import db
 from src.coreanalitica.modulos.propiedades.dominio.entidades import Metricas
 from src.coreanalitica.modulos.propiedades.dominio.fabricas import FabricaMetricas
@@ -26,13 +27,19 @@ class RepositorioMetricasPostgreSQL(RepositorioMetricas):
         db.session.add(metricas_dto)
         db.session.commit()
 
-    def actualizar(self, pais: str, valor_arrendamiento: float, valor_compra: float):
-        metricas_dto = db.session.query(MetricaDTO).filter(MetricaDTO.pais==str(pais)).one_or_none()
+        metrica = self.fabrica_metricas.crear_objeto(metricas_dto, MapeadorMetrica())
+        return metrica
+
+    def actualizar(self, entity: Metricas):
+        metricas_dto = db.session.query(MetricaDTO).filter(MetricaDTO.pais==str(entity.pais.nombre)).one_or_none()
         # Añadir query para suma y AVG desde la BD, añadir funcion de si no existe se crea
         if not metricas_dto:
-            raise ExcepcionNoEncontrado()
-        metricas_dto.valor_arrendamiento_avg = valor_arrendamiento
-        metricas_dto.valor_compra_avg = valor_compra
+            return self.agregar(entity)
+    
+        metricas_dto.valor_arrendamiento_avg = ((metricas_dto.valor_arrendamiento_avg * metricas_dto.current_count) + entity.valor.valor_arrendamiento) / (metricas_dto.current_count + 1)
+        metricas_dto.valor_compra_avg = ((metricas_dto.valor_compra_avg * metricas_dto.current_count) + entity.valor.valor_compra) / (metricas_dto.current_count + 1)
+        metricas_dto.current_count = metricas_dto.current_count + 1
+
         #Valida las reglas de negocio nuevamente
         metrica = self.fabrica_metricas.crear_objeto(metricas_dto, MapeadorMetrica())
         db.session.commit()

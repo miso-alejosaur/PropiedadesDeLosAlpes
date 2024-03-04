@@ -25,9 +25,8 @@ def suscribirse_a_eventos(app):
             mensaje = consumidor.receive()
             print(f'Evento recibido: {mensaje.value().data}')
             comando = mensaje.value().data
-            comando_contrato = ActualizarPromedios(id_pais=comando.id_pais, valor_arrendamiento=comando.valor_arrendamiento, valor_compra=comando.valore_compra)
-            #TODO recibir contrato
-            #dispatcher.send(signal=f'{type(evento).__name__}Integracion', evento=evento)
+            comando_contrato = ActualizarPromedios(pais=comando.id_pais, valor_arrendamiento=comando.valor_arrendamiento, valor_compra=comando.valore_compra)
+            
             with app.app_context():
                     ejecutar_commando(comando_contrato)
             consumidor.acknowledge(mensaje)     

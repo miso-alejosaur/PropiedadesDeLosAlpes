@@ -11,6 +11,7 @@ class MapeadorMetrica(Mapeador):
     def entidad_a_dto(self, entidad: Metricas) -> MetricasDTO:
         metricas_dto = MetricasDTO()
         metricas_dto.id = str(entidad.id)
+        metricas_dto.current_count = 1
         metricas_dto.valor_compra_avg = entidad.valor.valor_compra_avg
         metricas_dto.valor_arrendamiento_avg = entidad.valor.valor_arrendamiento_avg
         metricas_dto.pais = entidad.pais.nombre
@@ -19,7 +20,7 @@ class MapeadorMetrica(Mapeador):
 
     def dto_a_entidad(self, dto: MetricasDTO) -> Metricas:
         metricas = Metricas(id=dto.id, 
-                              valor=Valor(valor_compra_avg=dto.valor_compra_avg, valor_arrendamiento_avg=dto.valor_arrendamiento_avg),
+                              valor=Valor(valor_compra=dto.valor_compra_avg, valor_arrendamiento=dto.valor_arrendamiento_avg),
                               pais=Pais(nombre=dto.pais))
 
         return metricas

@@ -1,4 +1,4 @@
-from auditoria.modulos.propiedades.dominio.objetos_valor import Pais, Valor
+from src.coreanalitica.modulos.propiedades.dominio.objetos_valor import Pais, Valor
 from src.coreanalitica.seedwork.infraestructura.comandos import Comando
 from .base import PropiedadBaseHandler
 from dataclasses import dataclass, field

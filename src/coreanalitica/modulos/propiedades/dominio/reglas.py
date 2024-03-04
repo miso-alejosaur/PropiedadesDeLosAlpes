@@ -1,4 +1,4 @@
-from src.coreanalitica.modulos.propiedades.dominio.objetos_valor import Valor, IndiceConfiabilidad
+from src.coreanalitica.modulos.propiedades.dominio.objetos_valor import Valor
 from src.coreanalitica.seedwork.dominio.reglas import ReglaNegocio
 
 class ValorNoNegativo(ReglaNegocio):

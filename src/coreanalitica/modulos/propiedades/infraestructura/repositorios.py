@@ -1,5 +1,5 @@
 from uuid import UUID
-from auditoria.modulos.propiedades.dominio.objetos_valor import Pais, Valor
+from src.coreanalitica.modulos.propiedades.dominio.objetos_valor import Pais, Valor
 from src.coreanalitica.config.db import db
 from src.coreanalitica.modulos.propiedades.dominio.entidades import Metricas
 from src.coreanalitica.modulos.propiedades.dominio.fabricas import FabricaMetricas

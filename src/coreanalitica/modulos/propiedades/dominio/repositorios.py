@@ -1,5 +1,5 @@
 from abc import ABC
-from src.auditoria.seedwork.dominio.repositorios import Repositorio
+from src.coreanalitica.seedwork.dominio.repositorios import Repositorio
 
 
 class RepositorioMetricas(Repositorio, ABC):

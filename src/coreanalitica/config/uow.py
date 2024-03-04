@@ -1,5 +1,5 @@
-from src.auditoria.config.db import db
-from src.auditoria.seedwork.infraestructura.uow import UnidadTrabajo, Batch
+from src.coreanalitica.config.db import db
+from src.coreanalitica.seedwork.infraestructura.uow import UnidadTrabajo, Batch
 
 class UnidadTrabajoSQLAlchemy(UnidadTrabajo):
 

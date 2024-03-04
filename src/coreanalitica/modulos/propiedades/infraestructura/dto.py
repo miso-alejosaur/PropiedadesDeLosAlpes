@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, DateTime, Integer, Float
-from src.auditoria.config.db import db
+from src.coreanalitica.config.db import db
 
 Base = db.declarative_base()
 

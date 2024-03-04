@@ -1,4 +1,4 @@
-from src.auditoria.seedwork.infraestructura.comandos import Comando
+from src.coreanalitica.seedwork.infraestructura.comandos import Comando
 from .base import PropiedadBaseHandler
 from dataclasses import dataclass, field
 from src.coreanalitica.seedwork.infraestructura.comandos import ejecutar_commando as comando

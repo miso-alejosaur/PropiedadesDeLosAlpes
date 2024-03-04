@@ -1,6 +1,6 @@
 import uuid
 from dataclasses import dataclass, field
-from src.auditoria.seedwork.dominio.reglas import IdEntidadEsInmutable
+from src.coreanalitica.seedwork.dominio.reglas import IdEntidadEsInmutable
 from .mixins import ValidarReglasMixin
 from .eventos import EventoDominio
 

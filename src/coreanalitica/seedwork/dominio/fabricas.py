@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from src.auditoria.seedwork.dominio.mixins import ValidarReglasMixin
+from src.coreanalitica.seedwork.dominio.mixins import ValidarReglasMixin
 
 from .repositorios import Mapeador
 

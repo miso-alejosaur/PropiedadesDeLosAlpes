@@ -1,5 +1,5 @@
-from src.auditoria.modulos.propiedades.dominio.objetos_valor import Valor, IndiceConfiabilidad
-from src.auditoria.seedwork.dominio.reglas import ReglaNegocio
+from src.coreanalitica.modulos.propiedades.dominio.objetos_valor import Valor, IndiceConfiabilidad
+from src.coreanalitica.seedwork.dominio.reglas import ReglaNegocio
 
 class ValorNoNegativo(ReglaNegocio):
 

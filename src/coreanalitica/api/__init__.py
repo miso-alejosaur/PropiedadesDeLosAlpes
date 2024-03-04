@@ -22,7 +22,7 @@ def comenzar_consumidor(app):
 def create_app():
     
     app = Flask(__name__, instance_relative_config=True)
-    from src.auditoria.config.engine import url_postgresql_for_create_engine
+    from src.coreanalitica.config.engine import url_postgresql_for_create_engine
     app.config['SQLALCHEMY_DATABASE_URI'] = url_postgresql_for_create_engine(
         username=os.getenv("DB_USER_PROPIEDADES"),
         host=os.getenv("DB_HOST_PROPIEDADES"),
@@ -33,7 +33,7 @@ def create_app():
     app.secret_key = '9d58f98f-3ae8-4149-a09f-3a8c2012e37c'
     app.config['SESSION_TYPE'] = 'filesystem'
 
-    from src.auditoria.config.db import init_db
+    from src.coreanalitica.config.db import init_db
     init_db(app)
 
     importar_modelos_alchemy()

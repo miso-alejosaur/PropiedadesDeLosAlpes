@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from src.auditoria.seedwork.aplicacion.dto import DTO
+from src.coreanalitica.seedwork.aplicacion.dto import DTO
 
 @dataclass(frozen=True)
 class MetricaDTO(DTO):

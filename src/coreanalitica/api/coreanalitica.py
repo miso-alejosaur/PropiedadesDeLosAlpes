@@ -5,7 +5,7 @@ from src.coreanalitica.modulos.propiedades.aplicacion.mapeadores import MapMetri
 from src.coreanalitica.seedwork.dominio.excepciones import ExcepcionDominio
 from src.coreanalitica.modulos.propiedades.infraestructura.despachadores import Despachador
 
-import src.auditoria.seedwork.presentacion.api as api
+import src.coreanalitica.seedwork.presentacion.api as api
 
 bp = api.crear_blueprint('coreanalitica', '/coreanalitica')
     

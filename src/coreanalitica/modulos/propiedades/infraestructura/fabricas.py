@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from src.coreanalitica.modulos.propiedades.dominio.repositorios import RepositorioMetricas
 from src.coreanalitica.modulos.propiedades.infraestructura.repositorios import RepositorioMetricasPostgreSQL
 
-from src.auditoria.seedwork.dominio.repositorios import Repositorio
+from src.coreanalitica.seedwork.dominio.repositorios import Repositorio
 
 
 @dataclass

@@ -1,6 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
-from src.auditoria.seedwork.dominio.eventos import EventoDominio, EventoIntegracion
+from src.coreanalitica.seedwork.dominio.eventos import EventoDominio
 from datetime import datetime
 import uuid
 

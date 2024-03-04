@@ -26,9 +26,6 @@ class ActualizarPromediosHandler(PropiedadBaseHandler):
                 if isinstance(evento, EventoDominio):
                     print(evento, f'{type(evento).__name__}Dominio')
                     dispatcher.send(signal=f'{type(evento).__name__}Dominio', evento=evento)
-                elif isinstance(evento, EventoIntegracion):
-                    print(evento, f'{type(evento).__name__}Integracion')
-                    dispatcher.send(signal=f'{type(evento).__name__}Integracion', evento=evento)
         except Exception as e:
             print("Actualizacion no exitosa: " + str(e))
 

@@ -6,20 +6,17 @@ from flask import Flask, render_template, request, url_for, redirect, jsonify, s
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 def registrar_handlers():
-    import src.auditoria.modulos.propiedades.aplicacion
+    import src.coreanalitica.modulos.propiedades.aplicacion
 
 def importar_modelos_alchemy():
-    import src.auditoria.modulos.propiedades.infraestructura.dto
+    import src.coreanalitica.modulos.propiedades.infraestructura.dto
 
 def comenzar_consumidor(app):
     import threading
-    import src.auditoria.modulos.propiedades.infraestructura.consumidores as propiedades
+    import src.coreanalitica.modulos.propiedades.infraestructura.consumidores as metricas
 
     # Suscripción a eventos
-    threading.Thread(target=propiedades.suscribirse_a_eventos).start()
-
-    # Suscripción a comandos
-    threading.Thread(target=propiedades.suscribirse_a_comandos, args=[app]).start()
+    threading.Thread(target=metricas.suscribirse_a_eventos).start()
 
 
 def create_app():
@@ -42,14 +39,14 @@ def create_app():
     importar_modelos_alchemy()
     registrar_handlers()
 
-    from src.auditoria.config.db import db
+    from src.coreanalitica.config.db import db
 
     with app.app_context():
         db.create_all()
         comenzar_consumidor(app)
 
-    from src.auditoria.api import auditoria
-    app.register_blueprint(auditoria.bp)
+    from src.coreanalitica.api import coreanalitica
+    app.register_blueprint(coreanalitica.bp)
 
     return app
 

@@ -22,12 +22,13 @@ class RepositorioMetricasPostgreSQL(RepositorioMetricas):
         raise NotImplementedError
 
     def agregar(self, entity: Metricas):
-        metricas_dto = self.fabrica_propiedades.crear_objeto(entity, MapeadorMetrica())
+        metricas_dto = self.fabrica_metricas.crear_objeto(entity, MapeadorMetrica())
         db.session.add(metricas_dto)
         db.session.commit()
 
-    def actualizar(self, id: UUID, valor_arrendamiento: float, valor_compra: float):
-        metricas_dto = db.session.query(MetricaDTO).filter(MetricaDTO.id==str(id)).one_or_none()
+    def actualizar(self, pais: str, valor_arrendamiento: float, valor_compra: float):
+        metricas_dto = db.session.query(MetricaDTO).filter(MetricaDTO.pais==str(pais)).one_or_none()
+        # Añadir query para suma y AVG desde la BD, añadir funcion de si no existe se crea
         if not metricas_dto:
             raise ExcepcionNoEncontrado()
         metricas_dto.valor_arrendamiento_avg = valor_arrendamiento

@@ -12,8 +12,8 @@ class FabricaMetricas(Fabrica):
         if isinstance(obj, Entidad):
             return mapeador.entidad_a_dto(obj)
         else:
-            propiedad: Metricas = mapeador.dto_a_entidad(obj)
+            metricas: Metricas = mapeador.dto_a_entidad(obj)
 
-            self.validar_regla(ValorNoNegativo(propiedad.valor))
+            self.validar_regla(ValorNoNegativo(metricas.valor))
 
-            return propiedad
+            return metricas

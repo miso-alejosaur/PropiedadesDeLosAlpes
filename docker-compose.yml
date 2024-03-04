@@ -1,40 +1,6 @@
 version: '3.9'
 
 services:
-  database:
-    image: postgres:15-bullseye
-    environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_PORT: 5432
-    ports:
-      - 6100:5432
-    networks:
-      - pulsar
-    deploy:  
-      resources:
-        limits:
-          cpus: '0.3'
-          memory: 300M
-  
-  database-propiedades:
-    image: postgres:15-bullseye
-    environment:
-      POSTGRES_DB: postgrespropiedades
-      POSTGRES_USER: postgrespropiedades
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_PORT: 5432
-    ports:
-      - 6110:5432
-    networks:
-      - pulsar
-    deploy:  
-      resources:
-        limits:
-          cpus: '0.3'
-          memory: 300M
-
   # Start zookeeper
   zookeeper:
     image: apachepulsar/pulsar:latest
@@ -43,7 +9,8 @@ services:
     networks:
       - pulsar
     volumes:
-      - ./data/zookeeper:/pulsar/data/zookeeper
+      - ./zoo/data:/var/lib/zookeeper/data
+      - ./zoo/log:/var/lib/zookeeper/log
     environment:
       - metadataStoreUrl=zk:zookeeper:2181
     command: >
@@ -92,7 +59,8 @@ services:
         condition: service_completed_successfully
   # Map the local directory to the container to avoid bookie startup failure due to insufficient container disks.
     volumes:
-      - ./data/bookkeeper:/pulsar/data/bookkeeper
+      - ./book/data:/var/lib/bookkeeper/data
+      - ./book/log:/var/lib/bookkeeper/log
     command: bash -c "bin/apply-config-from-env.py conf/bookkeeper.conf
       && exec bin/pulsar bookie"
 
@@ -128,7 +96,7 @@ services:
     build: 
       dockerfile: ./app.Dockerfile
     volumes:
-      - .:/usr/app
+            - .:/usr/app
     ports:
       - 6150:80
     networks:
@@ -139,8 +107,6 @@ services:
           cpus: '0.4'
           memory: 400M
     depends_on:
-      database:
-        condition: service_started
       broker:
         condition: service_started
     environment:
@@ -161,8 +127,6 @@ services:
           cpus: '0.4'
           memory: 400M
     depends_on:
-      database-propiedades:
-        condition: service_started
       broker:
         condition: service_started
     environment:
@@ -183,8 +147,6 @@ services:
           cpus: '0.4'
           memory: 400M
     depends_on:
-      database-propiedades:
-        condition: service_started
       broker:
         condition: service_started
     environment:

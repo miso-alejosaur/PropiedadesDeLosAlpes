@@ -5,7 +5,7 @@ from src.coreanalitica.seedwork.infraestructura.schema.v1.eventos import EventoI
 class MetricaDisponiblePayload(Record):
     id = String()
     valor_compra = Float()
-    valor_arrendamiento = Float()()
+    valor_arrendamiento = Float()
     pais = String()
 
 class EventoMetricaDisponible(EventoIntegracion):

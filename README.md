@@ -39,7 +39,7 @@ El flujo comienza cuando se crea un contrato en el modulo de contratos el cual h
 
 
 | Integrante | Actividades |
-
+|---|---|
 | Carlos Torres | Microservicio de Auditoria, configuracion pulsar, pruebas de funcionamiento |
 | Brahian Munar | Microservicio de Auditoria, configuracion pulsar |
 | Alejando Santamaria | Microservicio de Auditoria, configuracion docker compose, pruebas de funcionamiento |

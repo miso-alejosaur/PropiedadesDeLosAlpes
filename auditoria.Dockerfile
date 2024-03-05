@@ -8,4 +8,4 @@ WORKDIR /usr/app
 COPY . .
 RUN poetry install --no-root
 EXPOSE 80
-ENTRYPOINT ["bash", "./entrypoint.sh" ]
+ENTRYPOINT ["bash", "./auditoria-entrypoint.sh" ]

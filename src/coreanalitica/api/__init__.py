@@ -16,8 +16,7 @@ def comenzar_consumidor(app):
     import src.coreanalitica.modulos.propiedades.infraestructura.consumidores as metricas
 
     # Suscripción a eventos
-    threading.Thread(target=metricas.suscribirse_a_eventos).start()
-
+    threading.Thread(target=metricas.suscribirse_a_eventos, args={app}).start()
 
 def create_app():
     

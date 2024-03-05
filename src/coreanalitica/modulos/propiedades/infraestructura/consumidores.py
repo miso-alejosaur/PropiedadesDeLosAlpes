@@ -25,7 +25,7 @@ def suscribirse_a_eventos(app):
             mensaje = consumidor.receive()
             print(f'Evento recibido: {mensaje.value().data}')
             comando = mensaje.value().data
-            comando_contrato = ActualizarPromedios(pais=comando.id_pais, valor_arrendamiento=comando.valor_arrendamiento, valor_compra=comando.valore_compra)
+            comando_contrato = ActualizarPromedios(pais=comando.pais, valor_arrendamiento=comando.valor_arrendamiento, valor_compra=comando.valor_compra)
             
             with app.app_context():
                     ejecutar_commando(comando_contrato)

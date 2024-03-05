@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "96cac150-0fa1-4eaf-a219-40223db0d13d",
+		"name": "Monoliticas_collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17357537"
+	},
+	"item": [
+		{
+			"name": "http://localhost:6150/contratos/contrato-query/1a67555d-a944-4506-9d81-716242d544d4",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fecha\": \"2020-03-02T12:12:00Z\",\r\n  \"valor\": 3333.2,\r\n  \"divisa\": \"COP\",\r\n  \"id_contrato\": \"283a8154-808c-4c12-b406-fb4b1b79eb41\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6150/contratos/contrato-query/1a67555d-a944-4506-9d81-716242d544d4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6150",
+					"path": [
+						"contratos",
+						"contrato-query",
+						"1a67555d-a944-4506-9d81-716242d544d4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:6150/contratos/contrato-comando",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fecha_inicio\": \"2023-03-02T12:12:00Z\",\r\n  \"fecha_vencimiento\": \"2024-03-02T12:12:00Z\",\r\n  \"valor\": 500,\r\n  \"valor_abonado\": 10,\r\n  \"divisa\": \"COP\",\r\n  \"tipo_contrato\": 2,\r\n  \"pais\": \"COLOMBIA\", \r\n  \"id_propiedad\": \"6135e3ce-c530-4c5b-ab35-555687ce068a\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6150/contratos/contrato-comando",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6150",
+					"path": [
+						"contratos",
+						"contrato-comando"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:6150/transacciones/transaccion-comando",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fecha\": \"2024-03-02T12:12:00Z\",\r\n  \"valor\": 10.5,\r\n  \"divisa\": \"COP\",\r\n  \"id_contrato\": \"783a8154-808c-4c12-b406-fb4b1b79eb41\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6150/transacciones/transaccion-comando",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6150",
+					"path": [
+						"transacciones",
+						"transaccion-comando"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:6150/transacciones/transaccion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fecha\": \"2020-03-02T12:12:00Z\",\r\n  \"valor\": 3393.2,\r\n  \"divisa\": \"COP\",\r\n  \"id_contrato\": \"783a8154-808c-4c12-b406-fb4b1b79eb41\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6150/transacciones/transaccion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6150",
+					"path": [
+						"transacciones",
+						"transaccion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:6160/auditoria/actualizar-confiabilidad-comando/6135e3ce-c530-4c5b-ab35-555687ce068a",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"indice_confiabilidad\": 0.8\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6160/auditoria/actualizar-confiabilidad-comando/6135e3ce-c530-4c5b-ab35-555687ce068a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6160",
+					"path": [
+						"auditoria",
+						"actualizar-confiabilidad-comando",
+						"6135e3ce-c530-4c5b-ab35-555687ce068a"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

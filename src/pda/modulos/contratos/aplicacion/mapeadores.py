@@ -1,7 +1,7 @@
 from datetime import date, time, datetime
 from src.pda.modulos.contratos.aplicacion.dto import ContratoDTO
 from src.pda.modulos.contratos.dominio.entidades import Contrato
-from src.pda.modulos.contratos.dominio.objetos_valor import Divisa, Fechas, Valor, TipoContrato, Pais
+from src.pda.modulos.contratos.dominio.objetos_valor import Divisa, Fechas, Valor, TipoContrato, Pais, Propiedad
 from src.pda.seedwork.dominio.repositorios import Mapeador as RepMap
 from src.pda.seedwork.aplicacion.dto import Mapeador as AppMap
 
@@ -20,7 +20,8 @@ class MapeadorContrato(RepMap):
                            entidad.tipo_contrato.tipo_contrato,
                            entidad.pais.nombre,
                            entidad.divisa.codigo,
-                           entidad.valor.abono)
+                           entidad.valor.abono,
+                           entidad.id_propiedad.id_propiedad)
 
     def dto_a_entidad(self, dto: ContratoDTO) -> Contrato:
 
@@ -32,13 +33,14 @@ class MapeadorContrato(RepMap):
                                           fecha_vencimiento=fecha_string_vencimiento.date()),
                             tipo_contrato = TipoContrato(dto.tipo_contrato),
                             pais = Pais(dto.pais),
-                            divisa=Divisa(dto.divisa))
+                            divisa=Divisa(dto.divisa), id_propiedad=Propiedad(dto.id_propiedad))
 
         return contrato
 
 class MapContratoDTOJson(AppMap):
     def externo_a_dto(self, externo: dict) -> ContratoDTO:
-        contrato_dto = ContratoDTO(externo["valor"], externo["fechas"], externo["tipo_contrato"], externo["pais"], externo["divisa"])
+        contrato_dto = ContratoDTO(externo["valor"], externo["fecha_inicio"], externo["fecha_vencimiento"], 
+                                   externo["tipo_contrato"], externo["pais"], externo["divisa"], externo["valor_abonado"], externo["id_propiedad"])
 
         return contrato_dto
 

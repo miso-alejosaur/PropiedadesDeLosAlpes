@@ -13,3 +13,4 @@ class Contrato(db.Model):
     pais = db.Column(String, nullable=False)
     divisa = db.Column(String, nullable=False)
     valor_abonado = db.Column(Float, nullable=False)
+    id_propiedad = db.Column(String, nullable=False)

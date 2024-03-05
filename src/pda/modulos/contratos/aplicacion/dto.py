@@ -10,3 +10,4 @@ class ContratoDTO(DTO):
     pais: str = field(default_factory=str)
     divisa: str = field(default_factory=str)
     valor_abonado: float = field(default_factory=int)
+    id_propiedad: str = field(default_factory=str)

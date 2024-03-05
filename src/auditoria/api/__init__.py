@@ -16,7 +16,7 @@ def comenzar_consumidor(app):
     import src.auditoria.modulos.propiedades.infraestructura.consumidores as propiedades
 
     # Suscripción a eventos
-    threading.Thread(target=propiedades.suscribirse_a_eventos).start()
+    threading.Thread(target=propiedades.suscribirse_a_eventos, args=[app]).start()
 
     # Suscripción a comandos
     threading.Thread(target=propiedades.suscribirse_a_comandos, args=[app]).start()

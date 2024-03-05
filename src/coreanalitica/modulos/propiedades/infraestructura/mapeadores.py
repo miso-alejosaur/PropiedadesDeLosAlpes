@@ -12,8 +12,8 @@ class MapeadorMetrica(Mapeador):
         metricas_dto = MetricasDTO()
         metricas_dto.id = str(entidad.id)
         metricas_dto.current_count = 1
-        metricas_dto.valor_compra_avg = entidad.valor.valor_compra_avg
-        metricas_dto.valor_arrendamiento_avg = entidad.valor.valor_arrendamiento_avg
+        metricas_dto.valor_compra_avg = entidad.valor.valor_compra
+        metricas_dto.valor_arrendamiento_avg = entidad.valor.valor_arrendamiento
         metricas_dto.pais = entidad.pais.nombre
 
         return metricas_dto

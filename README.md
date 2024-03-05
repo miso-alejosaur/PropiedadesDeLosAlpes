@@ -37,3 +37,11 @@ El flujo comienza cuando se crea un contrato en el modulo de contratos el cual h
 2. Escenario #6: Modificar un componente de infraestructura no requiere cambios en la logica del dominio.
 3. Escenario #8: Traducción a formato estandarizado para información de distintas fuentes.
 
+
+| Integrante | Actividades |
+
+| Carlos Torres | Microservicio de Auditoria, configuracion pulsar, pruebas de funcionamiento |
+| Brahian Munar | Microservicio de Auditoria, configuracion pulsar |
+| Alejando Santamaria | Microservicio de Auditoria, configuracion docker compose, pruebas de funcionamiento |
+| Romy Caicedo | Microservicio de Auditoria, configuracion docker compose, ReadMe |
+

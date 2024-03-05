@@ -22,6 +22,7 @@ Body: {
   "id_contrato": "283a8154-808c-4c12-b406-fb4b1b79eb41"
 
 }
+
 **Justificación uso sistema de versionamiento y evolución de esquemas:**
 Para nuestro proyecto decidimos usar Avro, la principal razón fue que teniamos ya ejemplos para implementar asi que esto agilizaba la curva de aprendizaje, además de dar guia y soporte durante del desarrollo a demás de facilitarse el entiendimiento de los mensajes al soportar JSON.
 

@@ -12,3 +12,17 @@ class PropiedadDisponiblePayload(Record):
 
 class EventoPropiedadDisponible(EventoIntegracion):
     data = PropiedadDisponiblePayload()
+
+class ContratoCreadoPayload(Record):
+    id_contrato = String()
+    valor = Float()
+    valor_abonado = Float()
+    fecha_inicio = String()
+    fecha_vencimiento = String()
+    pais = String()
+    divisa = String()
+    tipo_contrato = Integer()
+    id_propiedad = String()
+
+class EventoContratoCreado(EventoIntegracion):
+    data = ContratoCreadoPayload()

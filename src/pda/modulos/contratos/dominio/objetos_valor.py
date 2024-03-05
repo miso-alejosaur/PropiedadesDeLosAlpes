@@ -25,6 +25,11 @@ class TipoContrato(ObjetoValor):
 class Pais(ObjetoValor):
     nombre: str 
 
+@dataclass(frozen=True)
+class Propiedad(ObjetoValor):
+    id_propiedad: str
+
+
 class TipoContratoEnum(Enum):
     COMPRA_VENTA = 1
     ARRENDAMIENTO = 2

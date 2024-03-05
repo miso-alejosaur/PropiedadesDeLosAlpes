@@ -8,3 +8,16 @@ class ComandoActualizarAbonoContratoPayload(ComandoIntegracion):
 
 class ComandoActualizarAbonoContrato(ComandoIntegracion):
     data = ComandoActualizarAbonoContratoPayload()
+
+class CrearContratoPayload(ComandoIntegracion):
+    valor = Float()
+    valor_abonado = Float()
+    fecha_inicio = String()
+    fecha_vencimiento = String()
+    pais = String()
+    divisa = String()
+    tipo_contrato = Integer()
+    id_propiedad = String()
+
+class ComandoCrearContrato(ComandoIntegracion):
+    data = CrearContratoPayload()

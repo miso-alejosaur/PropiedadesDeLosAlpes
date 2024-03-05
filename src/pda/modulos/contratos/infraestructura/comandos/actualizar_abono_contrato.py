@@ -1,11 +1,9 @@
 from src.pda.seedwork.aplicacion.comandos import Comando
 from .base import ContratoBaseHandler
 from dataclasses import dataclass, field
-from src.pda.seedwork.aplicacion.comandos import ejecutar_commando as comando
+from src.pda.seedwork.infraestructura.comandos import ejecutar_commando as comando
 
 from src.pda.modulos.contratos.dominio.entidades import Contrato
-from src.pda.seedwork.infraestructura.uow import UnidadTrabajoPuerto
-from src.pda.modulos.contratos.aplicacion.mapeadores import MapeadorContrato
 from src.pda.modulos.contratos.infraestructura.repositorios import RepositorioContratos
 from pydispatch import dispatcher
 

@@ -1,4 +1,4 @@
-from src.pda.seedwork.aplicacion.comandos import ComandoHandler
+from src.pda.seedwork.infraestructura.comandos import ComandoHandler
 from src.pda.modulos.contratos.infraestructura.fabricas import FabricaRepositorio
 from src.pda.modulos.contratos.dominio.fabricas import FabricaContratos
 

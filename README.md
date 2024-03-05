@@ -20,4 +20,13 @@ Body: {
   "valor": 3393.2,
   "divisa": "COP",
   "id_contrato": "283a8154-808c-4c12-b406-fb4b1b79eb41"
+
 }
+**Justificación uso sistema de versionamiento y evolución de esquemas:**
+Para nuestro proyecto decidimos usar Avro, la principal razón fue que teniamos ya ejemplos para implementar asi que esto agilizaba la curva de aprendizaje, además de dar guia y soporte durante del desarrollo a demás de facilitarse el entiendimiento de los mensajes al soportar JSON.
+
+**Justificación CRUD o EventSourcing:**
+La decicion que tomamos fue hacer uso de CRUD esta decision estuvo dada por varios puntos importantes, uno de ellos es que el EventSourcing es más robusto en cuanto almacenamiento de información, cosa que no necesitabamos pues no requeriamos almacenar eventos que nos mostraran la evolucion o cambio de datos. Además de complejizar un poco la arquitectura, y consideramos que no tendria mucho sentido ya que las operaciones que realizamos son básicas y sería una mala práctica complejizar sin ser necesario.
+
+**Justificación uso de topologia de administración de datos- centralizado:**
+El flujo comienza cuando se crea un contrato en el modulo de contratos,en nuestro caso al analizar el negocio, entre los microservicios auditoria y core analitica decidimos utilizar un modelo centralizado dado que cuando se reciben los eventos de auditoria de la celebración de un contrato, core analitica va a generar metricas sobre esos mismos registros solo aumentando el promedio de valor de contratos por pais, es una metrica relativamente pequeña asi que no requiere una BD separada de esta manera se ahorraran costos de infraestructura al hacer un despliegue de la aplicación en la nube y disponibilizarlo allí.

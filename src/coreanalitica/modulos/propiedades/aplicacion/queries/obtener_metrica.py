@@ -13,8 +13,10 @@ class ObtenerMetrica(Query):
 class ObtenerMetricaHandler(MetricasQueryBaseHandler):
 
     def handle(self, query: ObtenerMetrica) -> QueryResultado:
-        repositorio = self.fabrica_repositorio.crear_objeto(RepositorioMetricas.__class__)
-        metrica =  self.fabrica_metrica.crear_objeto(repositorio.obtener_por_id(query.id), MapeadorMetrica())
+        repositorio = self._fabrica_repositorio.crear_objeto(RepositorioMetricas.__class__)
+        print(query.id)
+
+        metrica =  self._fabrica_metricas.crear_objeto(repositorio.obtener_por_pais(query.id), MapeadorMetrica())
         return QueryResultado(resultado=metrica)
 
 @query.register(ObtenerMetrica)

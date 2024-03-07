@@ -5,8 +5,8 @@ from src.coreanalitica.modulos.propiedades.aplicacion.mapeadores import MapMetri
 from src.coreanalitica.seedwork.dominio.excepciones import ExcepcionDominio
 from src.coreanalitica.modulos.propiedades.infraestructura.despachadores import Despachador
 from src.coreanalitica.modulos.propiedades.aplicacion.queries.obtener_metrica import ObtenerMetrica
-from src.pda.seedwork.aplicacion.queries import ejecutar_query
-from src.pda.seedwork.dominio.excepciones import ExcepcionNoEncontrado
+from src.coreanalitica.seedwork.aplicacion.queries import ejecutar_query
+from src.coreanalitica.seedwork.dominio.excepciones import ExcepcionNoEncontrado
 
 import src.coreanalitica.seedwork.presentacion.api as api
 

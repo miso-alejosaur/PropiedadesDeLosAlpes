@@ -152,6 +152,21 @@ services:
     environment:
       - PULSAR_ADDRESS=broker
 
+  bff-investigacion:
+    build: 
+      dockerfile: ./bff_investigacion.Dockerfile
+    volumes:
+      - .:/usr/app
+    ports:
+      - 6262:80
+    networks:
+      - pulsar
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: 400M
+
 networks:
   pulsar:
     driver: bridge

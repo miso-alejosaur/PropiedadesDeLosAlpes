@@ -18,6 +18,12 @@ class RepositorioMetricasPostgreSQL(RepositorioMetricas):
             raise ExcepcionNoEncontrado()
         return self.fabrica_metricas.crear_objeto(metricas_dto, MapeadorMetrica())
 
+    def obtener_por_pais(self, pais: str) -> Metricas:
+        metricas_dto = db.session.query(MetricaDTO).filter(MetricaDTO.pais==str(id)).one_or_none()
+        if not metricas_dto:
+            raise ExcepcionNoEncontrado()
+        return self.fabrica_metricas.crear_objeto(metricas_dto, MapeadorMetrica())
+
     def obtener_todos(self) -> list[Metricas]:
         # TODO
         raise NotImplementedError

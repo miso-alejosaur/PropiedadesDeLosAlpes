@@ -2,7 +2,7 @@ from src.coreanalitica.seedwork.aplicacion.queries import Query, QueryHandler, Q
 from src.coreanalitica.seedwork.aplicacion.queries import ejecutar_query as query
 from src.coreanalitica.modulos.propiedades.infraestructura.repositorios import RepositorioMetricas
 from dataclasses import dataclass
-from .base import ContratosQueryBaseHandler
+from .base import MetricasQueryBaseHandler
 from src.coreanalitica.modulos.propiedades.aplicacion.mapeadores import MapeadorMetrica
 import uuid
 

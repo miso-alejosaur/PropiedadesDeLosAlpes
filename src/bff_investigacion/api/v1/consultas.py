@@ -1,7 +1,8 @@
-
 import strawberry
 from .esquemas import *
 
 @strawberry.type
 class Query:
-    reservas: typing.List[Reserva] = strawberry.field(resolver=obtener_promedio)
+    @strawberry.field
+    def country(self, name: str) -> Metrica:
+        return obtener_promedio(name)

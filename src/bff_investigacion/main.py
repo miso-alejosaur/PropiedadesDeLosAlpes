@@ -2,6 +2,7 @@ import asyncio
 from fastapi import FastAPI
 
 from consumidores import suscribirse_a_topico
+from api.v1.router import router as v1
 
 app = FastAPI()
 tasks = list()
@@ -23,3 +24,5 @@ def shutdown_event():
     global tasks
     for task in tasks:
         task.cancel()
+
+app.include_router(v1, prefix="/v1")

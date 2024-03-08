@@ -2,15 +2,13 @@ import strawberry
 import typing
 
 from strawberry.types import Info
-from bff_web import utils
-from bff_web.despachadores import Despachador
+from src.bff_investigacion import utils
+from src.bff_investigacion.despachadores import Despachador
 
 from .esquemas import *
 
 @strawberry.type
 class Mutation:
-
-    # TODO Agregue objeto de itinerarios o reserva
     @strawberry.mutation
     async def actualizar_indice_confiabilidad(self, id:str) -> ReservaRespuesta:
         payload = dict(

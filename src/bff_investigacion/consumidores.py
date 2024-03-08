@@ -4,7 +4,7 @@ import pulsar, _pulsar
 import aiopulsar
 import asyncio
 from pulsar.schema import *
-from . import utils
+from utils import *
 
 async def suscribirse_a_topico(suscripcion: str, eventos=[]):
     try:

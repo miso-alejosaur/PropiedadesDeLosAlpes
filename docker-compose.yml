@@ -158,7 +158,7 @@ services:
     volumes:
       - .:/usr/app
     ports:
-      - 6262:80
+      - 6262:8000
     networks:
       - pulsar
     deploy:
@@ -166,6 +166,11 @@ services:
         limits:
           cpus: '0.4'
           memory: 400M
+    depends_on:
+      broker:
+        condition: service_started
+    environment:
+      - PULSAR_ADDRESS=broker
 
 networks:
   pulsar:

@@ -1,11 +1,5 @@
 from fastapi import FastAPI, Request
 import asyncio
-import time
-import traceback
-import uvicorn
-import uuid
-import datetime
-
 from pydantic import BaseSettings
 from typing import Any
 
@@ -39,7 +33,7 @@ def shutdown_event():
 
 @app.get('/stream')
 async def stream_mensajes(request: Request):
-    def nuevo_evento()
+    def nuevo_evento():
         global eventos
         return {'data': eventos.pop(), 'event': 'NuevoEvento'}
     async def leer_eventos():

@@ -1,8 +1,19 @@
+from fastapi import FastAPI, Request
 import asyncio
-from fastapi import FastAPI
+import time
+import traceback
+import uvicorn
+import uuid
+import datetime
+
+from pydantic import BaseSettings
+from typing import Any
 
 from consumidores import suscribirse_a_topico
 from api.v1.router import router as v1
+
+
+from sse_starlette.sse import EventSourceResponse
 
 app = FastAPI()
 tasks = list()
@@ -28,7 +39,7 @@ def shutdown_event():
 
 @app.get('/stream')
 async def stream_mensajes(request: Request):
-    def nuevo_evento():
+    def nuevo_evento()
         global eventos
         return {'data': eventos.pop(), 'event': 'NuevoEvento'}
     async def leer_eventos():

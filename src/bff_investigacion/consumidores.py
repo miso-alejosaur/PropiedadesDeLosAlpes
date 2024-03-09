@@ -15,6 +15,7 @@ async def suscribirse_a_topico(suscripcion: str, eventos=[]):
                 subscription_name='pda-sub-eventos', 
                 schema=AvroSchema(EventoPropiedadDisponible)
             ) as consumidor:
+                print(f'ya me suscribi')
                 while True:
                     mensaje = await consumidor.receive()
                     print(mensaje)
@@ -26,3 +27,25 @@ async def suscribirse_a_topico(suscripcion: str, eventos=[]):
     except:
         logging.error(f'ERROR: Suscribiendose al tópico! {topico}, {suscripcion}, {schema}')
         traceback.print_exc()
+
+async def suscribirse_a_eventos(app):
+    try:
+        cliente = pulsar.Client(f'pulsar://{utils.broker_host()}:6650')
+        consumidor = cliente.subscribe('eventos-auditoria-integracion', consumer_type=_pulsar.ConsumerType.Shared,subscription_name='pda-sub-eventos', schema=AvroSchema(EventoPropiedadDisponible))
+
+        while True:
+            mensaje = consumidor.receive()
+            print(f'Evento recibido: {mensaje.value().data}')
+            comando = mensaje.value().data
+            comando_contrato = ActualizarPromedios(pais=comando.pais, valor_arrendamiento=comando.valor_arrendamiento, valor_compra=comando.valor_compra)
+            
+            with app.app_context():
+                    ejecutar_commando(comando_contrato)
+            consumidor.acknowledge(mensaje)     
+
+        cliente.close()
+    except:
+        logging.error('ERROR: Suscribiendose al tópico de eventos!')
+        traceback.print_exc()
+        if cliente:
+            cliente.close()

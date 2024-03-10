@@ -31,7 +31,7 @@ class MapeadorTransaccion(RepMap):
 
 class MapTransaccionDTOJson(AppMap):
     def externo_a_dto(self, externo: dict) -> TransaccionDTO:
-        transaccion_dto = TransaccionDTO(externo["valor"], externo["fecha"], externo["divisa"], externo["id_contrato"])
+        transaccion_dto = TransaccionDTO(float(externo["valor"]), externo["fecha"], externo["divisa"], externo["id_contrato"])
 
         return transaccion_dto
 

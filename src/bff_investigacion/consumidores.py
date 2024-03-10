@@ -36,11 +36,6 @@ async def suscribirse_a_eventos(app):
         while True:
             mensaje = consumidor.receive()
             print(f'Evento recibido: {mensaje.value().data}')
-            comando = mensaje.value().data
-            comando_contrato = ActualizarPromedios(pais=comando.pais, valor_arrendamiento=comando.valor_arrendamiento, valor_compra=comando.valor_compra)
-            
-            with app.app_context():
-                    ejecutar_commando(comando_contrato)
             consumidor.acknowledge(mensaje)     
 
         cliente.close()

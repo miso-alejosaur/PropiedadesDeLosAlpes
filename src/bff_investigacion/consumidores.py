@@ -5,6 +5,7 @@ import aiopulsar
 import asyncio
 from pulsar.schema import *
 from utils import *
+from src.bff_investigacion.api.v1.esquemas import EventoPropiedadDisponible
 
 async def suscribirse_a_topico(suscripcion: str, eventos=[]):
     try:

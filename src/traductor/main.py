@@ -12,8 +12,10 @@ def create_app():
 
     from src.traductor.api import traductor_json
     from src.traductor.api import traductor_xml
+    from src.traductor.api import traductor_csv
     app.register_blueprint(traductor_json.bp)
     app.register_blueprint(traductor_xml.bp)
+    app.register_blueprint(traductor_csv.bp)
 
     return app
 

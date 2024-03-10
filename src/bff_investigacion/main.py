@@ -2,7 +2,6 @@ from fastapi import FastAPI, Request
 import asyncio
 
 from consumidores import suscribirse_a_topico
-from consumidores import suscribirse_a_evento
 from api.v1.router import router as v1
 
 
@@ -21,7 +20,7 @@ async def app_startup():
     global tasks
     global eventos
     print(f'aquivoy')
-    task1 = asyncio.ensure_future(suscribirse_a_evento())
+    task1 = asyncio.ensure_future(suscribirse_a_topico("eventos-auditoria-integracion", eventos=eventos))
     tasks.append(task1)
 
 @app.on_event("shutdown")

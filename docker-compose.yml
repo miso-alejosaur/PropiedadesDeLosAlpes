@@ -92,11 +92,13 @@ services:
     command: bash -c "bin/apply-config-from-env.py conf/broker.conf
       &&  exec bin/pulsar broker"
 
-  app:
+  pda:
+    container_name: pda
+    hostname: pda
     build: 
       dockerfile: ./app.Dockerfile
     volumes:
-            - .:/usr/app
+      - .:/usr/app
     ports:
       - 6150:80
     networks:
@@ -151,6 +153,26 @@ services:
         condition: service_started
     environment:
       - PULSAR_ADDRESS=broker
+    
+  traductor:
+    build: 
+      dockerfile: ./traductor.Dockerfile
+    volumes:
+      - .:/usr/app
+    ports:
+      - 6170:80
+    networks:
+      - pulsar
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: 400M
+    depends_on:
+      pda:
+        condition: service_started
+    environment:
+      - PDA_ADDRESS=pda
 
 networks:
   pulsar:

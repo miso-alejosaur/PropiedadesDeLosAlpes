@@ -1,0 +1,414 @@
+{
+	"info": {
+		"_postman_id": "4e1501fe-75a4-4172-9f61-ddefe85ef7ce",
+		"name": "Monoliticas_collection Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16188128"
+	},
+	"item": [
+		{
+			"name": "traductor-json",
+			"item": [
+				{
+					"name": "contrato-comando",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fecha_inicio\": \"2023-03-02T12:12:00Z\",\r\n  \"fecha_vencimiento\": \"2024-03-02T12:12:00Z\",\r\n  \"valor\": 501,\r\n  \"valor_abonado\": 10,\r\n  \"divisa\": \"COP\",\r\n  \"tipo_contrato\": 2,\r\n  \"pais\": \"COLOMBIA\", \r\n  \"id_propiedad\": \"ce9b5a4b-a0b0-4783-8427-0fabeca44cb7\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6170/traductor-json/contrato-comando",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6170",
+							"path": [
+								"traductor-json",
+								"contrato-comando"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear transaccion sincrona",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fecha\": \"2020-03-02T12:12:00Z\",\r\n  \"valor\": 3393.2,\r\n  \"divisa\": \"COP\",\r\n  \"id_contrato\": \"e770aaff-4d54-4677-9c14-d93f2963eb79\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6170/traductor-json/transaccion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6170",
+							"path": [
+								"traductor-json",
+								"transaccion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transaccion-comando",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fecha\": \"2024-03-02T12:12:00Z\",\r\n  \"valor\": 10.5,\r\n  \"divisa\": \"COP\",\r\n  \"id_contrato\": \"e770aaff-4d54-4677-9c14-d93f2963eb79\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6170/traductor-json/transaccion-comando",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6170",
+							"path": [
+								"traductor-json",
+								"transaccion-comando"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "traductor-xml",
+			"item": [
+				{
+					"name": "contrato-comando xml",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<root>\r\n\t<fecha_inicio>2023-03-02T12:12:00Z</fecha_inicio>\r\n\t<fecha_vencimiento>2024-03-02T12:12:00Z</fecha_vencimiento>\r\n\t<valor>501</valor>\r\n\t<valor_abonado>11</valor_abonado>\r\n\t<divisa>COP</divisa>\r\n\t<tipo_contrato>2</tipo_contrato>\r\n\t<pais>COLOMBIA</pais>\r\n\t<id_propiedad>ce9b5a4b-a0b0-4783-8427-0fabeca44cb7</id_propiedad>\r\n</root>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6170/traductor-xml/contrato-comando",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6170",
+							"path": [
+								"traductor-xml",
+								"contrato-comando"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear transaccion sincrona xml",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<root>\r\n\t<fecha>2020-03-02T12:12:00Z</fecha>\r\n\t<valor>3393.5</valor>\r\n\t<divisa>COP</divisa>\r\n\t<id_contrato>e770aaff-4d54-4677-9c14-d93f2963eb79</id_contrato>\r\n</root>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6170/traductor-xml/transaccion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6170",
+							"path": [
+								"traductor-xml",
+								"transaccion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transaccion-comando xml",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n<root>\r\n\t<fecha>2024-03-02T12:12:00Z</fecha>\r\n\t<valor>10.5</valor>\r\n\t<divisa>COP</divisa>\r\n\t<id_contrato>e770aaff-4d54-4677-9c14-d93f2963eb79</id_contrato>\r\n</root>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6170/traductor-xml/transaccion-comando",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6170",
+							"path": [
+								"traductor-xml",
+								"transaccion-comando"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "traductor-csv",
+			"item": [
+				{
+					"name": "contrato-comando csv",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\"fecha_inicio\",\"fecha_vencimiento\",\"valor\",\"valor_abonado\",\"divisa\",\"tipo_contrato\",\"pais\",\"id_propiedad\"\r\n\"2023-03-02T12:12:00Z\",\"2024-03-02T12:12:00Z\",501,10,\"COP\",2,\"COLOMBIA\",\"ce9b5a4b-a0b0-4783-8427-0fabeca44cb7\"",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6170/traductor-csv/contrato-comando",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6170",
+							"path": [
+								"traductor-csv",
+								"contrato-comando"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear transaccion sincrona csv",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\"fecha\",\"valor\",\"divisa\",\"id_contrato\"\r\n\"2020-03-02T12:12:00Z\",3393.2,\"COP\",\"e770aaff-4d54-4677-9c14-d93f2963eb79\"",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6170/traductor-csv/transaccion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6170",
+							"path": [
+								"traductor-csv",
+								"transaccion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transaccion-comando csv",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\"fecha\",\"valor\",\"divisa\",\"id_contrato\"\r\n\"2020-03-02T12:12:00Z\",3393.2,\"COP\",\"e770aaff-4d54-4677-9c14-d93f2963eb79\"",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:6170/traductor-csv/transaccion-comando",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "6170",
+							"path": [
+								"traductor-csv",
+								"transaccion-comando"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BFF",
+			"item": [
+				{
+					"name": "Query",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query MyQuery {\n  country(name: \"Colombia\") {\n    pais\n    valorArrendamiento\n    valorCompra\n  }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://34.16.16.224:6262/v1/",
+							"protocol": "http",
+							"host": [
+								"34",
+								"16",
+								"16",
+								"224"
+							],
+							"port": "6262",
+							"path": [
+								"v1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mutacion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "  mutation MyMutation {\n    actualizarIndiceConfiabilidad(id: \"\", indiceConfiabilidad: 1.5) {\n      codigo\n      mensaje\n    }\n  }",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "http://34.16.16.224:6262/v1/",
+							"protocol": "http",
+							"host": [
+								"34",
+								"16",
+								"16",
+								"224"
+							],
+							"port": "6262",
+							"path": [
+								"v1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get contrato-query",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"fecha\": \"2020-03-02T12:12:00Z\",\r\n  \"valor\": 3333.2,\r\n  \"divisa\": \"COP\",\r\n  \"id_contrato\": \"283a8154-808c-4c12-b406-fb4b1b79eb41\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6150/contratos/contrato-query/e770aaff-4d54-4677-9c14-d93f2963eb79",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6150",
+					"path": [
+						"contratos",
+						"contrato-query",
+						"e770aaff-4d54-4677-9c14-d93f2963eb79"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put actualizar-confiabilidad-comando",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"indice_confiabilidad\": 0.8\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6160/auditoria/actualizar-confiabilidad-comando/6135e3ce-c530-4c5b-ab35-555687ce068a",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6160",
+					"path": [
+						"auditoria",
+						"actualizar-confiabilidad-comando",
+						"6135e3ce-c530-4c5b-ab35-555687ce068a"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

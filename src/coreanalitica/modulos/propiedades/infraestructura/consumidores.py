@@ -16,7 +16,6 @@ from src.coreanalitica.seedwork.infraestructura.schema.v1.eventos import EventoI
 
 
 def suscribirse_a_eventos(app):
-    cliente = None
     try:
         cliente = pulsar.Client(f'pulsar://{utils.broker_host()}:6650')
         consumidor = cliente.subscribe('eventos-auditoria-integracion', consumer_type=_pulsar.ConsumerType.Shared,subscription_name='pda-sub-eventos', schema=AvroSchema(EventoPropiedadDisponible))

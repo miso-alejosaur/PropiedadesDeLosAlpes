@@ -38,19 +38,22 @@ class RepositorioMetricasPostgreSQL(RepositorioMetricas):
         return metrica
 
     def actualizar(self, entity: Metricas):
-        metricas_dto = db.session.query(MetricaDTO).filter(MetricaDTO.pais==str(entity.pais.nombre)).one_or_none()
-        # Añadir query para suma y AVG desde la BD, añadir funcion de si no existe se crea
-        if not metricas_dto:
-            return self.agregar(entity)
-    
-        metricas_dto.valor_arrendamiento_avg = ((metricas_dto.valor_arrendamiento_avg * metricas_dto.current_count) + entity.valor.valor_arrendamiento) / (metricas_dto.current_count + 1)
-        metricas_dto.valor_compra_avg = ((metricas_dto.valor_compra_avg * metricas_dto.current_count) + entity.valor.valor_compra) / (metricas_dto.current_count + 1)
-        metricas_dto.current_count = metricas_dto.current_count + 1
+        try:
+            metricas_dto = db.session.query(MetricaDTO).filter(MetricaDTO.pais==str(entity.pais.nombre)).one_or_none()
+            # Añadir query para suma y AVG desde la BD, añadir funcion de si no existe se crea
+            if not metricas_dto:
+                raise Exception
+        
+            metricas_dto.valor_arrendamiento_avg = ((metricas_dto.valor_arrendamiento_avg * metricas_dto.current_count) + entity.valor.valor_arrendamiento) / (metricas_dto.current_count + 1)
+            metricas_dto.valor_compra_avg = ((metricas_dto.valor_compra_avg * metricas_dto.current_count) + entity.valor.valor_compra) / (metricas_dto.current_count + 1)
+            metricas_dto.current_count = metricas_dto.current_count + 1
 
-        #Valida las reglas de negocio nuevamente
-        metrica = self.fabrica_metricas.crear_objeto(metricas_dto, MapeadorMetrica())
-        db.session.commit()
-        return metrica
+            #Valida las reglas de negocio nuevamente
+            metrica = self.fabrica_metricas.crear_objeto(metricas_dto, MapeadorMetrica())
+            db.session.commit()
+            return metrica, 1
+        except:
+            return entity, 0
 
     def eliminar(self, entity_id: UUID):
         ...

@@ -29,14 +29,18 @@ class RepositorioPropiedadesPostgreSQL(RepositorioPropiedades):
         db.session.commit()
 
     def actualizar(self, id: UUID, indice_confiabilidad: float):
-        propiedad_dto = db.session.query(PropiedadDTO).filter(PropiedadDTO.id==str(id)).one_or_none()
-        if not propiedad_dto:
-            raise ExcepcionNoEncontrado()
-        propiedad_dto.indice_confiabilidad = indice_confiabilidad
-        #Valida las reglas de negocio nuevamente
-        propiedad = self.fabrica_propiedades.crear_objeto(propiedad_dto, MapeadorPropiedad())
-        db.session.commit()
-        return propiedad
+        try:
+            propiedad_dto = db.session.query(PropiedadDTO).filter(PropiedadDTO.id==str(id)).one_or_none()
+            if not propiedad_dto:
+                raise ExcepcionNoEncontrado()
+            propiedad_dto.indice_confiabilidad = indice_confiabilidad
+            #Valida las reglas de negocio nuevamente
+            propiedad = self.fabrica_propiedades.crear_objeto(propiedad_dto, MapeadorPropiedad())
+            db.session.commit()
+            return propiedad, 1
+        except:
+            propiedad = Propiedad(id=id, indice_confiabilidad=indice_confiabilidad)
+            return propiedad, 0
     
     def actualizar_propiedad(self, dto):
         propiedad_dto = db.session.query(PropiedadDTO).filter(PropiedadDTO.id==str(dto.id_propiedad)).one_or_none()

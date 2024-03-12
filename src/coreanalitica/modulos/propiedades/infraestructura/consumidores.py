@@ -18,13 +18,36 @@ from src.coreanalitica.seedwork.infraestructura.schema.v1.eventos import EventoI
 def suscribirse_a_eventos(app):
     try:
         cliente = pulsar.Client(f'pulsar://{utils.broker_host()}:6650')
-        consumidor = cliente.subscribe('eventos-auditoria-integracion', consumer_type=_pulsar.ConsumerType.Shared,subscription_name='pda-sub-eventos', schema=AvroSchema(EventoPropiedadDisponible))
+        consumidor = cliente.subscribe('eventos-auditoria-integracion2', consumer_type=_pulsar.ConsumerType.Shared,subscription_name='pda-sub-eventos', schema=AvroSchema(EventoPropiedadDisponible))
 
         while True:
             mensaje = consumidor.receive()
             print(f'Evento recibido: {mensaje.value().data}')
             comando = mensaje.value().data
             comando_contrato = ActualizarPromedios(pais=comando.pais, valor_arrendamiento=comando.valor_arrendamiento, valor_compra=comando.valor_compra)
+            
+            with app.app_context():
+                    ejecutar_commando(comando_contrato)
+            consumidor.acknowledge(mensaje)     
+
+        cliente.close()
+    except:
+        logging.error('ERROR: Suscribiendose al tópico de eventos!')
+        traceback.print_exc()
+        if cliente:
+            cliente.close()
+
+def suscribirse_a_comandos(app):
+    cliente = None
+    try:
+        cliente = pulsar.Client(f'pulsar://{utils.broker_host()}:6650')
+        consumidor = cliente.subscribe('comandos-metricas', consumer_type=_pulsar.ConsumerType.Shared,subscription_name='pda-sub-eventos', schema=AvroSchema(ComandoActualizarValoresPayload))
+
+        while True:
+            mensaje = consumidor.receive()
+            print(f'Evento recibido: {mensaje.value().data}')
+            comando = mensaje.value().data
+            comando_contrato = ActualizarPromedios(pais=comando.id_pais, valor_arrendamiento=comando.valor_arrendamiento, valor_compra=comando.valor_compra, id_propiedad=comando.id_propiedad, indice_confiabilidad=comando.indice_confiabilidad)
             
             with app.app_context():
                     ejecutar_commando(comando_contrato)

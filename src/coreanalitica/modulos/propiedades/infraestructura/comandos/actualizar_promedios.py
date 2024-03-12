@@ -13,6 +13,8 @@ class ActualizarPromedios(Comando):
     pais: str
     valor_arrendamiento: float
     valor_compra: float
+    id_propiedad: str
+    indice_confiabilidad: float
 
 
 class ActualizarPromediosHandler(PropiedadBaseHandler):
@@ -25,8 +27,8 @@ class ActualizarPromediosHandler(PropiedadBaseHandler):
             entity = Metricas(valor=Valor(valor_compra=comando.valor_compra, valor_arrendamiento=comando.valor_arrendamiento),
                                          pais=Pais(nombre=comando.pais))
 
-            metrica: Metricas = repositorio.actualizar(entity=entity)
-            metrica.actualizar_valores(metrica)
+            metrica, exito = repositorio.actualizar(entity=entity)
+            metrica.actualizar_valores(metrica, comando.id_propiedad, exito, comando.indice_confiabilidad)
             for evento in metrica.eventos:
                 if isinstance(evento, EventoDominio):
                     print(evento, f'{type(evento).__name__}Dominio')

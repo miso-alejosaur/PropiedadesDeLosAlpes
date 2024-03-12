@@ -13,10 +13,10 @@ class Metricas(AgregacionRaiz):
     valor: ov.Valor = field(default_factory=ov.Valor)
     pais: ov.Pais = field(default_factory=ov.Pais)
     
-    def actualizar_valores(self, metrica: Metricas):
+    def actualizar_valores(self, metrica: Metricas, id_propiedad, exito, indice_confiabilidad):
         self.valor = metrica.valor
         self.pais = metrica.pais
 
         self.agregar_evento(PromediosValoresActualizados(pais =self.pais.nombre,
                                                          valor_arrendamiento=self.valor.valor_arrendamiento,
-                                                         valor_compra=self.valor.valor_compra))
+                                                         valor_compra=self.valor.valor_compra, id_propiedad=id_propiedad, exito=exito, indice_confiabilidad=indice_confiabilidad))

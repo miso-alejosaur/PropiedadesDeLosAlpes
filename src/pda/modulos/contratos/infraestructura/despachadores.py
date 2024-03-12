@@ -1,6 +1,6 @@
 import pulsar
 from pulsar.schema import *
-from src.pda.modulos.contratos.infraestructura.schema.v1.eventos import EventoAbonoContratoActualizado, AbonoContratoActualizadoPayload, EventoContratoCreado, ContratoCreadoPayload
+from src.pda.modulos.contratos.infraestructura.schema.v1.eventos import EventoAbonoContratoActualizado, AbonoContratoActualizadoPayload, EventoContrato, ContratoPayload
 from src.pda.modulos.contratos.infraestructura.schema.v1.comandos import ComandoActualizarAbonoContrato, ComandoActualizarAbonoContratoPayload, ComandoCrearContrato, CrearContratoPayload
 from src.pda.seedwork.infraestructura import utils
 
@@ -15,7 +15,7 @@ class Despachador:
 
     def publicar_evento(self, evento, topico):
         # TODO Debe existir un forma de crear el Payload en Avro con base al tipo del evento
-        payload = ContratoCreadoPayload(
+        payload = ContratoPayload(
             id_contrato=str(evento.id_contrato),
             valor=float(evento.valor),
             valor_abonado=float(evento.valor_abonado),
@@ -24,10 +24,11 @@ class Despachador:
             fecha_vencimiento=str(evento.fecha_vencimiento),
             pais=str(evento.pais),
             tipo_contrato=int(evento.tipo_contrato),
-            id_propiedad=str(evento.id_propiedad)
+            id_propiedad=str(evento.id_propiedad),
+            exito=1
             )
-        evento_integracion = EventoContratoCreado(data=payload)
-        self._publicar_mensaje(evento_integracion, topico, AvroSchema(EventoContratoCreado))
+        evento_integracion = EventoContrato(data=payload)
+        self._publicar_mensaje(evento_integracion, topico, AvroSchema(EventoContrato))
 
     def publicar_comando(self, comando, topico):
         comando_integracion = None

@@ -12,7 +12,12 @@ class ActualizarIndiceConfiabilidad(Comando):
     id_propiedad: str
     indice_confiabilidad: float
     compensacion: bool
-
+    
+@dataclass
+class RevertirIndiceConfiabilidad():
+    id_propiedad: str
+    indice_confiabilidad: float
+    compensacion: bool
 
 class ActualizarIndiceConfiabilidadHandler(PropiedadBaseHandler):
     
@@ -20,16 +25,15 @@ class ActualizarIndiceConfiabilidadHandler(PropiedadBaseHandler):
 
         try:
             repositorio = self.fabrica_repositorio.crear_objeto(RepositorioPropiedades.__class__)
-            propiedad, exito = repositorio.actualizar(comando.id_propiedad, comando.indice_confiabilidad)
-            if not comando.compensacion:
-                propiedad.actualizar_indice_confiabilidad(propiedad, exito)
-                for evento in propiedad.eventos:
-                    if isinstance(evento, EventoDominio):
-                        print(evento, f'{type(evento).__name__}Dominio')
-                        dispatcher.send(signal=f'{type(evento).__name__}Dominio', evento=evento)
-                    elif isinstance(evento, EventoIntegracion):
-                        print(evento, f'{type(evento).__name__}Integracion')
-                        dispatcher.send(signal=f'{type(evento).__name__}Integracion', evento=evento)
+            propiedad: Propiedad = repositorio.actualizar(comando.id_propiedad, comando.indice_confiabilidad)
+            propiedad.actualizar_indice_confiabilidad(propiedad)
+            for evento in propiedad.eventos:
+                if isinstance(evento, EventoDominio):
+                    print(evento, f'{type(evento).__name__}Dominio')
+                    dispatcher.send(signal=f'{type(evento).__name__}Dominio', evento=evento)
+                elif isinstance(evento, EventoIntegracion):
+                    print(evento, f'{type(evento).__name__}Integracion')
+                    dispatcher.send(signal=f'{type(evento).__name__}Integracion', evento=evento)
         except Exception as e:
             print("Actualizacion no exitosa: " + str(e))
 

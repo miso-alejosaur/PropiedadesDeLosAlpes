@@ -14,14 +14,14 @@ class Despachador:
         cliente.close()
 
     def publicar_evento(self, evento, topico):
-        # TODO Debe existir un forma de crear el Payload en Avro con base al tipo del evento
         payload = PropiedadDisponiblePayload(
             id_propiedad=str(evento.id_propiedad),
             valor_compra=float(evento.valor_compra),
             valor_arrendamiento=float(evento.valor_arrendamiento),
             divisa=str(evento.divisa),
             pais=str(evento.pais),
-            indice_confiabilidad=float(evento.indice_confiabilidad)
+            indice_confiabilidad=float(evento.indice_confiabilidad),
+            exito=int(evento.exito)
             )
         evento_integracion = EventoPropiedadDisponible(data=payload)
         self._publicar_mensaje(evento_integracion, topico, AvroSchema(EventoPropiedadDisponible))

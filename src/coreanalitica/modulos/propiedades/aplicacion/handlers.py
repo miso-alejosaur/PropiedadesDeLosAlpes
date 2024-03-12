@@ -6,4 +6,5 @@ class HandlerMetricaDominio(Handler):
 
     @staticmethod
     def handle_valores_acualizados(evento):
-        print(f'Evento recibido: {evento}')
+        despachador = Despachador()
+        despachador.publicar_evento(evento, 'eventos-core')

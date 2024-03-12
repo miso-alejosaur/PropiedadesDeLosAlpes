@@ -7,6 +7,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 def registrar_handlers():
     import src.auditoria.modulos.propiedades.aplicacion
+    import src.auditoria.modulos.sagas.aplicacion
 
 def importar_modelos_alchemy():
     import src.auditoria.modulos.propiedades.infraestructura.dto
@@ -14,9 +15,13 @@ def importar_modelos_alchemy():
 def comenzar_consumidor(app):
     import threading
     import src.auditoria.modulos.propiedades.infraestructura.consumidores as propiedades
+    import src.auditoria.modulos.sagas.infraestructura.consumidores as sagas
 
     # Suscripción a eventos
     threading.Thread(target=propiedades.suscribirse_a_eventos, args=[app]).start()
+    threading.Thread(target=sagas.suscribirse_a_eventos_contrato_creado,  args=[app]).start()
+    threading.Thread(target=sagas.suscribirse_a_eventos_indice_actualizado,  args=[app]).start()
+    threading.Thread(target=sagas.suscribirse_a_eventos_metricas_actualizado,  args=[app]).start()
 
     # Suscripción a comandos
     threading.Thread(target=propiedades.suscribirse_a_comandos, args=[app]).start()
@@ -47,6 +52,8 @@ def create_app():
     with app.app_context():
         db.create_all()
         comenzar_consumidor(app)
+        from src.auditoria.modulos.sagas.aplicacion.coordinadores.saga_propiedades import CoordinadorPropiedades
+        CoordinadorPropiedades()
 
     from src.auditoria.api import auditoria
     app.register_blueprint(auditoria.bp)

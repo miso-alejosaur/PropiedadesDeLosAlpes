@@ -9,3 +9,6 @@ class PromediosValoresActualizados(EventoDominio):
     valor_compra: float = None
     valor_arrendamiento: float = None
     pais: str = None
+    id_propiedad: str = None
+    exito: int = None
+    indice_confiabilidad: float = None

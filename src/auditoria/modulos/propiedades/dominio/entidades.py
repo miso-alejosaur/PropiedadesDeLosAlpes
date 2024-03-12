@@ -17,7 +17,7 @@ class Propiedad(AgregacionRaiz):
     pais: ov.Pais = field(default_factory=ov.Pais)
     indice_confiabilidad: ov.IndiceConfiabilidad = field(default_factory=ov.IndiceConfiabilidad)
     
-    def actualizar_indice_confiabilidad(self, propiedad: Propiedad):
+    def actualizar_indice_confiabilidad(self, propiedad: Propiedad, exito):
         self.valor = propiedad.valor
         self.fechas = propiedad.fechas
         self.divisa = propiedad.divisa
@@ -33,7 +33,7 @@ class Propiedad(AgregacionRaiz):
                                                     fecha_ultimo_arrendamiento=self.fechas.fecha_ultimo_arrendamiento, 
                                                     divisa=self.divisa.codigo,
                                                     pais=self.pais.nombre,
-                                                    indice_confiabilidad=self.indice_confiabilidad.indice))
+                                                    indice_confiabilidad=self.indice_confiabilidad.indice, exito=exito))
         else:
             self.agregar_evento(IndiceConfiabilidadActualizado(id_propiedad=self.id, 
                                                     valor_compra=self.valor.valor_compra, 

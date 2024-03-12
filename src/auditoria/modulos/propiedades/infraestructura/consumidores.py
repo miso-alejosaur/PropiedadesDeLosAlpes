@@ -6,7 +6,7 @@ import logging
 import traceback
 from pydispatch import dispatcher
 
-from src.auditoria.modulos.propiedades.infraestructura.schema.v1.eventos import EventoPropiedadDisponible, EventoContratoCreado
+from src.auditoria.modulos.propiedades.infraestructura.schema.v1.eventos import EventoPropiedadDisponible, EventoContrato
 from src.auditoria.modulos.propiedades.infraestructura.schema.v1.comandos import ComandoActualizarIndiceConfiabilidad
 from src.auditoria.seedwork.infraestructura.comandos import ejecutar_commando
 from src.auditoria.seedwork.infraestructura import utils
@@ -23,7 +23,7 @@ def suscribirse_a_eventos(app):
     cliente = None
     try:
         cliente = pulsar.Client(f'pulsar://{utils.broker_host()}:6650')
-        consumidor = cliente.subscribe('eventos-contratos-auditoria', consumer_type=_pulsar.ConsumerType.Shared,subscription_name='pda-sub-eventos', schema=AvroSchema(EventoContratoCreado))
+        consumidor = cliente.subscribe('eventos-contratos-auditoria2', consumer_type=_pulsar.ConsumerType.Shared,subscription_name='pda-sub-eventos', schema=AvroSchema(EventoContrato))
 
         while True:
             mensaje = consumidor.receive()
@@ -59,7 +59,7 @@ def suscribirse_a_comandos(app):
             mensaje = consumidor.receive()
             print(f'Comando recibido: {mensaje.value().data}')
             comando = mensaje.value().data
-            comando_contrato = ActualizarIndiceConfiabilidad(id_propiedad=comando.id_propiedad, indice_confiabilidad=comando.indice_confiabilidad)
+            comando_contrato = ActualizarIndiceConfiabilidad(id_propiedad=comando.id_propiedad, indice_confiabilidad=comando.indice_confiabilidad, compensacion=(True if comando.compensacion == 1 else False))
             with app.app_context():
                     ejecutar_commando(comando_contrato)
             consumidor.acknowledge(mensaje)     

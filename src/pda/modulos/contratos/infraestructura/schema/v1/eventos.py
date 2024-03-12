@@ -2,7 +2,7 @@ from pulsar.schema import *
 
 from src.pda.seedwork.infraestructura.schema.v1.eventos import EventoIntegracion
 
-class ContratoCreadoPayload(Record):
+class ContratoPayload(Record):
     id_contrato = String()
     valor = Float()
     valor_abonado = Float()
@@ -12,9 +12,10 @@ class ContratoCreadoPayload(Record):
     divisa = String()
     tipo_contrato = Integer()
     id_propiedad = String()
+    exito = Integer()
 
-class EventoContratoCreado(EventoIntegracion):
-    data = ContratoCreadoPayload()
+class EventoContrato(EventoIntegracion):
+    data = ContratoPayload()
 
 class AbonoContratoActualizadoPayload(Record):
     id_contrato = String()
